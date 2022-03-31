@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.sql.Connection;
@@ -29,6 +26,8 @@ public class Login {
     private TextField username;
     @FXML
     private PasswordField password;
+    @FXML
+    private Hyperlink createAccount;
 
 
 
@@ -65,6 +64,12 @@ public class Login {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void userCreateAccount(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("Register.fxml");
 
     }
 

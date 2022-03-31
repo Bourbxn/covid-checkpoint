@@ -43,7 +43,7 @@
             <PasswordField fx:id="password" layoutX="222.0" layoutY="242.0" promptText="password" />
          <AnchorPane layoutX="11.0" layoutY="551.0" prefHeight="49.0" prefWidth="520.0" style="-fx-background-color: #013658;">
             <children>
-               <Hyperlink layoutX="265.0" layoutY="12.0" text="Create Account" />
+               <Hyperlink fx:id="createAccount" layoutX="265.0" layoutY="13.0" onAction="#userCreateAccount" text="Create Account" />
                <Label layoutX="138.0" layoutY="16.0" text="Don't have an account?" textFill="WHITE" />
             </children>
          </AnchorPane>
