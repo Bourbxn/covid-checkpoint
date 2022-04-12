@@ -1,19 +1,16 @@
 package com.example.javafx_covid19_project;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTimePicker;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
+import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,7 +50,6 @@ public class AddTimeline extends Pages implements Initializable {
     private CheckBox sickness_1;
     @FXML
     private Button add_timeline_btn;
-    private String username;
 
 
     @Override
@@ -67,34 +63,71 @@ public class AddTimeline extends Pages implements Initializable {
 
     @FXML
     private void addTimeline(ActionEvent event) throws IOException{
-        username = getUserLoggedIn();
-        addTimelineToDB(username,"22/03/2565",1200,1300,"ECC",0);
+        String username = getUserLoggedIn();
+
+        checkBeforeAddToDB(username,datetimeToStr(date_1,hour_start_1,min_start_1), datetimeToStr(date_1,hour_end_1,min_end_1),
+                location_1.getText(),sickToStr(sickness_1.isSelected()));
+
     }
 
-    private void addTimelineToDB(String username, String date, int time_start, int time_end,String location, int sickness){
+    private void checkBeforeAddToDB(String username, String datetime_start, String datetime_end,String location, String sickness){
+        if(isEmpty(username)||isEmpty(datetime_start)||isEmpty(datetime_end)||isEmpty(location)){
+            System.out.println("Error, have some null!");
+        }
+        else {
+            System.out.println("go to Add timeline process");
+            addTimelineToDB(username,datetime_start,datetime_end,location,sickness);
+        }
+    }
+
+    private void addTimelineToDB(String username, String datetime_start, String datetime_end,String location, String sickness){
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        Date dateUtil = new Date();
-        java.sql.Date sqlDate = new java.sql.Date(dateUtil.getTime());
-
         try{
-            String connectQuery = "INSERT INTO timeline (username, date, time_start, time_end, location, sickness) VALUES (?,?,?,?,?,?)";
+            String connectQuery = "INSERT INTO timeline (username, datetime_start, datetime_end, location, sickness) VALUES (?,?,?,?,?)";
             PreparedStatement pst = connectDB.prepareStatement(connectQuery);
             pst.setString(1, username);
-            pst.setString(2, "2022-10-8");
-            pst.setString(3, "2000");
-            pst.setString(4, "2200");
-            pst.setString(5, "ECC");
-            pst.setString(6, "0");
+            pst.setString(2, datetime_start);
+            pst.setString(3, datetime_end);
+            pst.setString(4, location);
+            pst.setString(5, sickness);
             pst.executeUpdate();
             System.out.println("Add timeline Success!");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void getUserAddTimeline(String username){
-        this.username = username;
+
+    private String sickToStr(boolean sickness){
+        if(sickness){
+            return "1";
+        }
+        else{
+            return "0";
+        }
     }
+
+    private String datetimeToStr(DatePicker datePicker,ComboBox<String> comboBox_1,ComboBox<String> comboBox_2){
+        if(isDatePickerNull(datePicker)||isComboBoxNull(comboBox_1)||isComboBoxNull(comboBox_2)){
+            return "";
+        }
+        else {
+            return String.format("%s %s:%s:00",datePicker.getValue().toString(),comboBox_1.getValue(),comboBox_2.getValue());
+        }
+    }
+
+    private boolean isEmpty(String text){
+        return text.compareTo("") == 0;
+    }
+
+    private boolean isComboBoxNull(ComboBox<String> comboBox){
+        return comboBox.getValue() == null;
+    }
+
+    private boolean isDatePickerNull(DatePicker datePicker){
+        return datePicker.getValue() == null;
+    }
+
+
 }
