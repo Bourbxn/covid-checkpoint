@@ -18,7 +18,7 @@ import java.sql.*;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-public class Register implements Initializable {
+public class Register extends Pages implements Initializable {
 
     public Register() {
 

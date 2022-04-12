@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application {
 
+public class Main extends Application {
     private static Stage stg;
 
     @Override
@@ -27,6 +27,13 @@ public class Main extends Application {
         stg.getScene().setRoot(pane);
     }
 
+    public void changeScenePassValue(String fxml,Pages pages,String value) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        Pages page = loader.getController();
+        page.setUserLoggedIn(value);
+        stg.getScene().setRoot(root);
+    }
 
     public static void main(String[] args) {
         launch(args);

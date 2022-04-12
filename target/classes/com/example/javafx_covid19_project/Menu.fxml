@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #00375b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_covid19_project.Menu">
+   <center>
+      <AnchorPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="add_timeline_btn" layoutX="358.0" layoutY="287.0" mnemonicParsing="false" onAction="#goToAddTimeline" text="Add Timeline" />
+            <Button fx:id="logout_btn" layoutX="373.0" layoutY="523.0" mnemonicParsing="false" onAction="#userLogout" text="Logout" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

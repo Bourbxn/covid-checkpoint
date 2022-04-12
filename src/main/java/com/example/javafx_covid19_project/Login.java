@@ -3,6 +3,7 @@ package com.example.javafx_covid19_project;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -14,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Login {
+public class Login extends Pages{
 
     public Login() {
 
@@ -48,17 +49,13 @@ public class Login {
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);
 
-            /*
-            while(queryOutput.next()){
-                System.out.println(usernameStr);
-            }*/
-
             if(!queryOutput.isBeforeFirst()){
-                System.out.println("ERROR INPUT");
+                System.out.println("Failed to login!");
             }
             else{
-                m.changeScene("AfterLogin.fxml");
-                System.out.println("wrong input");
+                Menu menu = new Menu();
+                m.changeScenePassValue("Menu.fxml",menu,username.getText().toString());
+                System.out.println("Successful to Login!");
             }
 
         } catch (SQLException e) {
@@ -70,8 +67,18 @@ public class Login {
     public void userCreateAccount(ActionEvent event) throws IOException {
         Main m = new Main();
         m.changeScene("Register.fxml");
-
     }
+
+    /*
+    private void changeSceneToMenu() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+        Parent root = loader.load();
+        Menu menu = loader.getController();
+        menu.getUserLoggedIn(username.getText().toString());
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }*/
 
 
 }
