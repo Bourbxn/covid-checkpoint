@@ -6,83 +6,78 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
-
-import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AddTimeline extends Pages implements Initializable {
-    private String[] hourList = {"1","2","3","4","5","6","7","8","9","10","11","12",
-            "13","14","15","16","17","18","19","20","21","22","23","24"};
-    private String[] minList = {"1","2","3","4","5","6","7","8","9","10","11","12",
+    private final String[] hourList = {"00","01","02","03","04","05","06","07","08","09","10","11","12",
+            "13","14","15","16","17","18","19","20","21","22","23"};
+    private final String[] minList = {"00","01","02","03","04","05","06","07","08","09","10","11","12",
             "13","14","15","16","17","18","19","20","21","22","23","24",
             "25","26","27","28","29","30","31","32","33","34","35","36",
             "37","38","39","40","41","42","43","44","45","46","47","48",
-            "49","50","51","52","53","54","55","56","57","58","59","60"};
+            "49","50","51","52","53","54","55","56","57","58","59"};
 
-    @FXML
-    private Text add_timeline_label;
-    @FXML
-    private DatePicker date_1;
-    @FXML
-    private ComboBox<String> hour_start_1;
-    @FXML
-    private Text split_start_1;
-    @FXML
-    private ComboBox<String> min_start_1;
-    @FXML
-    private Text to_1;
-    @FXML
-    private ComboBox<String > hour_end_1;
-    @FXML
-    private Text split_end_1;
-    @FXML
-    private ComboBox<String> min_end_1;
-    @FXML
-    private TextField location_1;
-    @FXML
-    private CheckBox sickness_1;
-    @FXML
-    private Button add_timeline_btn;
+    @FXML private Text add_timeline_label;
+    @FXML private Button add_timeline_btn;
+
+    @FXML private DatePicker date_1;
+    @FXML private ComboBox<String> hour_start_1;
+    @FXML private Text split_start_1;
+    @FXML private ComboBox<String> min_start_1;
+    @FXML private Text to_1;
+    @FXML private ComboBox<String > hour_end_1;
+    @FXML private Text split_end_1;
+    @FXML private ComboBox<String> min_end_1;
+    @FXML private TextField location_1;
+    @FXML private CheckBox sickness_1;
+
+    @FXML private DatePicker date_2;
+    @FXML private ComboBox<String> hour_start_2;
+    @FXML private Text split_start_2;
+    @FXML private ComboBox<String> min_start_2;
+    @FXML private Text to_2;
+    @FXML private ComboBox<String > hour_end_2;
+    @FXML private Text split_end_2;
+    @FXML private ComboBox<String> min_end_2;
+    @FXML private TextField location_2;
+    @FXML private CheckBox sickness_2;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        hour_start_1.setItems(FXCollections.observableArrayList(hourList));
-        min_start_1.setItems(FXCollections.observableArrayList(minList));
-        hour_end_1.setItems(FXCollections.observableArrayList(hourList));
-        min_end_1.setItems(FXCollections.observableArrayList(minList));
+        setHourMinComboBox(hour_start_1,min_start_1,hour_end_1,min_end_1);
+        setHourMinComboBox(hour_start_2,min_start_2,hour_end_2,min_end_2);
     }
 
 
     @FXML
     private void addTimeline(ActionEvent event) throws IOException{
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
         String username = getUserLoggedIn();
-
         checkBeforeAddToDB(username,datetimeToStr(date_1,hour_start_1,min_start_1), datetimeToStr(date_1,hour_end_1,min_end_1),
-                location_1.getText(),sickToStr(sickness_1.isSelected()));
+                location_1.getText(),sickToStr(sickness_1.isSelected()),connectDB);
+        checkBeforeAddToDB(username,datetimeToStr(date_2,hour_start_2,min_start_2), datetimeToStr(date_2,hour_end_2,min_end_2),
+                location_2.getText(),sickToStr(sickness_2.isSelected()),connectDB);
 
     }
 
-    private void checkBeforeAddToDB(String username, String datetime_start, String datetime_end,String location, String sickness){
+    private void checkBeforeAddToDB(String username, String datetime_start, String datetime_end,String location, String sickness, Connection connection){
         if(isEmpty(username)||isEmpty(datetime_start)||isEmpty(datetime_end)||isEmpty(location)){
             System.out.println("Error, have some null!");
         }
         else {
             System.out.println("go to Add timeline process");
-            addTimelineToDB(username,datetime_start,datetime_end,location,sickness);
+            addTimelineToDB(username,datetime_start,datetime_end,location,sickness,connection);
         }
     }
 
-    private void addTimelineToDB(String username, String datetime_start, String datetime_end,String location, String sickness){
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
+    private void addTimelineToDB(String username, String datetime_start, String datetime_end,String location, String sickness, Connection connectDB){
         try{
             String connectQuery = "INSERT INTO timeline (username, datetime_start, datetime_end, location, sickness) VALUES (?,?,?,?,?)";
             PreparedStatement pst = connectDB.prepareStatement(connectQuery);
@@ -127,6 +122,13 @@ public class AddTimeline extends Pages implements Initializable {
 
     private boolean isDatePickerNull(DatePicker datePicker){
         return datePicker.getValue() == null;
+    }
+
+    private void setHourMinComboBox(ComboBox<String> hourStart,ComboBox<String> minStart,ComboBox<String> hourEnd,ComboBox<String> minEnd){
+        hourStart.setItems(FXCollections.observableArrayList(hourList));
+        minStart.setItems(FXCollections.observableArrayList(minList));
+        hourEnd.setItems(FXCollections.observableArrayList(hourList));
+        minEnd.setItems(FXCollections.observableArrayList(minList));
     }
 
 
