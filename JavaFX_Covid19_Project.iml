@@ -20,15 +20,6 @@
       </library>
     </orderEntry>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/jfoenix-8.0.10.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:18-ea+6" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:mac-aarch64:18-ea+6" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:18-ea+6" level="project" />
@@ -43,6 +34,15 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.8.1" level="project" />
-    <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.10" level="project" />
+    <orderEntry type="library" name="controlsfx-11.0.1" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/controlsfx-11.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

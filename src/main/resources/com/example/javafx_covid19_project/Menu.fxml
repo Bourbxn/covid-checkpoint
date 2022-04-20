@@ -8,8 +8,9 @@
    <center>
       <AnchorPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="add_timeline_btn" layoutX="358.0" layoutY="287.0" mnemonicParsing="false" onAction="#goToAddTimeline" text="Add Timeline" />
-            <Button fx:id="logout_btn" layoutX="373.0" layoutY="523.0" mnemonicParsing="false" onAction="#userLogout" text="Logout" />
+            <Button fx:id="add_timeline_btn" focusTraversable="false" layoutX="355.0" layoutY="287.0" mnemonicParsing="false" onAction="#goToAddTimeline" text="Add Timeline" />
+            <Button fx:id="logout_btn" focusTraversable="false" layoutX="373.0" layoutY="523.0" mnemonicParsing="false" onAction="#userLogout" text="Logout" />
+            <Button fx:id="check_point_btn" focusTraversable="false" layoutX="358.0" layoutY="238.0" mnemonicParsing="false" onAction="#goToCheckPoint" text="Check Point" />
          </children>
       </AnchorPane>
    </center>

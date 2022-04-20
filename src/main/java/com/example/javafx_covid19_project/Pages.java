@@ -12,4 +12,13 @@ public class Pages {
     public String getUserLoggedIn(){
         return username;
     }
+
+    public String getUserPage(String role, String adminPages,String staffPages, String memberPages){
+        return switch (role) {
+            case "ADMIN" -> adminPages;
+            case "STAFF" -> staffPages;
+            case "MEMBER" -> memberPages;
+            default -> null;
+        };
+    }
 }

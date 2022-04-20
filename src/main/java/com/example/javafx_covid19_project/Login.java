@@ -1,12 +1,7 @@
 package com.example.javafx_covid19_project;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.sql.Connection;
 
@@ -30,17 +25,21 @@ public class Login extends Pages{
     @FXML
     private Hyperlink createAccount;
 
+    private String role;
+
 
 
     public void userLogin(ActionEvent event) throws IOException {
-        checkLogin();
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        setRoleDB(connectDB);
+        System.out.println(role);
+        checkLogin(connectDB);
 
     }
 
-    private void checkLogin() throws IOException {
+    private void checkLogin(Connection connectDB) throws IOException {
         Main m = new Main();
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
 
         String connectQuery = String.format("SELECT * FROM population WHERE username = '%s' AND password = '%s'"
         ,username.getText().toString(),password.getText().toString());
@@ -54,7 +53,8 @@ public class Login extends Pages{
             }
             else{
                 Menu menu = new Menu();
-                m.changeScenePassValue("Menu.fxml",menu,username.getText().toString());
+                String page = getUserPage(role,"MenuAdmin.fxml","Menu.fxml","Menu.fxml");
+                m.changeScenePassValue(page,menu,username.getText());
                 System.out.println("Successful to Login!");
             }
 
@@ -64,21 +64,24 @@ public class Login extends Pages{
 
     }
 
+    private void setRoleDB(Connection connectDB) throws IOException{
+        String connectQuery = String.format("SELECT role FROM population WHERE username = '%s'",username.getText());
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()){
+                this.role = queryOutput.getString("role");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void userCreateAccount(ActionEvent event) throws IOException {
         Main m = new Main();
         m.changeScene("Register.fxml");
     }
-
-    /*
-    private void changeSceneToMenu() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
-        Parent root = loader.load();
-        Menu menu = loader.getController();
-        menu.getUserLoggedIn(username.getText().toString());
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }*/
-
 
 }

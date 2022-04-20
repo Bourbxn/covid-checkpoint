@@ -12,10 +12,9 @@ import java.io.IOException;
 
 public class Menu extends Pages{
 
-    @FXML
-    private Button add_timeline_btn;
-    @FXML
-    private Button logout_btn;
+    @FXML private Button check_point_btn;
+    @FXML private Button add_timeline_btn;
+    @FXML private Button logout_btn;
 
 
     public void goToAddTimeline(ActionEvent event) throws IOException{
@@ -23,6 +22,13 @@ public class Menu extends Pages{
         AddTimeline addTimeline = new AddTimeline();
         m.changeScenePassValue("AddTimeline.fxml",addTimeline,getUserLoggedIn());
         System.out.println("Go to AddTimeline with "+getUserLoggedIn());
+    }
+
+    public void goToCheckPoint(ActionEvent event) throws IOException{
+        Main m = new Main();
+        CheckPoint checkPoint = new CheckPoint();
+        m.changeScenePassValue("CheckPoint.fxml",checkPoint,getUserLoggedIn());
+        System.out.println("Go to CheckPoint with "+getUserLoggedIn());
     }
 
 

@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,36 +21,49 @@ public class AddTimeline extends Pages implements Initializable {
             "37","38","39","40","41","42","43","44","45","46","47","48",
             "49","50","51","52","53","54","55","56","57","58","59"};
 
-    @FXML private Text add_timeline_label;
     @FXML private Button add_timeline_btn;
+    @FXML private Button back_to_menu;
 
     @FXML private DatePicker date_1;
     @FXML private ComboBox<String> hour_start_1;
-    @FXML private Text split_start_1;
     @FXML private ComboBox<String> min_start_1;
-    @FXML private Text to_1;
     @FXML private ComboBox<String > hour_end_1;
-    @FXML private Text split_end_1;
     @FXML private ComboBox<String> min_end_1;
     @FXML private TextField location_1;
     @FXML private CheckBox sickness_1;
 
     @FXML private DatePicker date_2;
     @FXML private ComboBox<String> hour_start_2;
-    @FXML private Text split_start_2;
     @FXML private ComboBox<String> min_start_2;
-    @FXML private Text to_2;
     @FXML private ComboBox<String > hour_end_2;
-    @FXML private Text split_end_2;
     @FXML private ComboBox<String> min_end_2;
     @FXML private TextField location_2;
     @FXML private CheckBox sickness_2;
+
+    @FXML private DatePicker date_3;
+    @FXML private ComboBox<String> hour_start_3;
+    @FXML private ComboBox<String> min_start_3;
+    @FXML private ComboBox<String > hour_end_3;
+    @FXML private ComboBox<String> min_end_3;
+    @FXML private TextField location_3;
+    @FXML private CheckBox sickness_3;
+
+    @FXML private DatePicker date_4;
+    @FXML private ComboBox<String> hour_start_4;
+    @FXML private ComboBox<String> min_start_4;
+    @FXML private ComboBox<String > hour_end_4;
+    @FXML private ComboBox<String> min_end_4;
+    @FXML private TextField location_4;
+    @FXML private CheckBox sickness_4;
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         setHourMinComboBox(hour_start_1,min_start_1,hour_end_1,min_end_1);
         setHourMinComboBox(hour_start_2,min_start_2,hour_end_2,min_end_2);
+        setHourMinComboBox(hour_start_3,min_start_3,hour_end_3,min_end_3);
+        setHourMinComboBox(hour_start_4,min_start_4,hour_end_4,min_end_4);
     }
 
 
@@ -64,6 +76,10 @@ public class AddTimeline extends Pages implements Initializable {
                 location_1.getText(),sickToStr(sickness_1.isSelected()),connectDB);
         checkBeforeAddToDB(username,datetimeToStr(date_2,hour_start_2,min_start_2), datetimeToStr(date_2,hour_end_2,min_end_2),
                 location_2.getText(),sickToStr(sickness_2.isSelected()),connectDB);
+        checkBeforeAddToDB(username,datetimeToStr(date_3,hour_start_3,min_start_3), datetimeToStr(date_3,hour_end_3,min_end_3),
+                location_3.getText(),sickToStr(sickness_3.isSelected()),connectDB);
+        checkBeforeAddToDB(username,datetimeToStr(date_4,hour_start_4,min_start_4), datetimeToStr(date_4,hour_end_4,min_end_4),
+                location_4.getText(),sickToStr(sickness_4.isSelected()),connectDB);
 
     }
 
@@ -130,6 +146,13 @@ public class AddTimeline extends Pages implements Initializable {
         hourEnd.setItems(FXCollections.observableArrayList(hourList));
         minEnd.setItems(FXCollections.observableArrayList(minList));
     }
+
+    public void backMenuFromAddTimeline(ActionEvent event) throws IOException{
+        Main m = new Main();
+        m.changeScene("Menu.fxml");
+    }
+
+
 
 
 }
