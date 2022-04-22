@@ -1,13 +1,15 @@
-package com.example.javafx_covid19_project;
+package com.example.javafx_covid19_project.member;
 
+import com.example.javafx_covid19_project.DatabaseConnection;
+import com.example.javafx_covid19_project.Main;
+import com.example.javafx_covid19_project.Pages;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,7 +58,7 @@ public class AddTimeline extends Pages implements Initializable {
     @FXML private TextField location_4;
     @FXML private CheckBox sickness_4;
 
-
+    private String covid_round;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -72,6 +74,8 @@ public class AddTimeline extends Pages implements Initializable {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         String username = getUserLoggedIn();
+        setCovidRound(connectDB);
+        addNewCovidRound(connectDB);
         checkBeforeAddToDB(username,datetimeToStr(date_1,hour_start_1,min_start_1), datetimeToStr(date_1,hour_end_1,min_end_1),
                 location_1.getText(),sickToStr(sickness_1.isSelected()),connectDB);
         checkBeforeAddToDB(username,datetimeToStr(date_2,hour_start_2,min_start_2), datetimeToStr(date_2,hour_end_2,min_end_2),
@@ -80,7 +84,6 @@ public class AddTimeline extends Pages implements Initializable {
                 location_3.getText(),sickToStr(sickness_3.isSelected()),connectDB);
         checkBeforeAddToDB(username,datetimeToStr(date_4,hour_start_4,min_start_4), datetimeToStr(date_4,hour_end_4,min_end_4),
                 location_4.getText(),sickToStr(sickness_4.isSelected()),connectDB);
-
     }
 
     private void checkBeforeAddToDB(String username, String datetime_start, String datetime_end,String location, String sickness, Connection connection){
@@ -95,15 +98,44 @@ public class AddTimeline extends Pages implements Initializable {
 
     private void addTimelineToDB(String username, String datetime_start, String datetime_end,String location, String sickness, Connection connectDB){
         try{
-            String connectQuery = "INSERT INTO timeline (username, datetime_start, datetime_end, location, sickness) VALUES (?,?,?,?,?)";
+            String connectQuery = "INSERT INTO timeline_covid (username, datetime_start, datetime_end, location, sickness, covid_round) VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = connectDB.prepareStatement(connectQuery);
             pst.setString(1, username);
             pst.setString(2, datetime_start);
             pst.setString(3, datetime_end);
             pst.setString(4, location);
             pst.setString(5, sickness);
+            pst.setString(6, covid_round);
             pst.executeUpdate();
             System.out.println("Add timeline Success!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setCovidRound(Connection connectDB){
+        String connectQuery = String.format("SELECT covid_round FROM user_member WHERE username = '%s'",getUserLoggedIn());
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()){
+                this.covid_round = queryOutput.getString("covid_round");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addNewCovidRound(Connection connectDB){
+        covid_round = String.valueOf(Integer.parseInt(covid_round)+1);
+        try{
+            String connectQuery = String.format("UPDATE user_member SET covid_round = ? WHERE username = '%s'",getUserLoggedIn());
+            PreparedStatement pst = connectDB.prepareStatement(connectQuery);
+            pst.setString(1, covid_round);
+            pst.executeUpdate();
+            System.out.println("Add new covid round success!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -151,8 +183,4 @@ public class AddTimeline extends Pages implements Initializable {
         Main m = new Main();
         m.changeScene("Menu.fxml");
     }
-
-
-
-
 }

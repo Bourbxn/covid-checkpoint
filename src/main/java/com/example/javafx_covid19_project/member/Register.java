@@ -1,6 +1,9 @@
-package com.example.javafx_covid19_project;
+package com.example.javafx_covid19_project.member;
 
 
+import com.example.javafx_covid19_project.DatabaseConnection;
+import com.example.javafx_covid19_project.Main;
+import com.example.javafx_covid19_project.Pages;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -44,25 +47,40 @@ public class Register extends Pages implements Initializable {
     private Label gender_label;
 
     public void userCreateAccount(ActionEvent event) throws IOException {
-        createAccount();
-    }
-
-    private void createAccount() throws IOException {
-        Main m = new Main();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
+        addToUser(connectDB);
+        createMember(connectDB);
+    }
 
-
+    private void addToUser(Connection connectDB) {
         try{
-            String connectQuery = "INSERT INTO population (username, password, first_name,last_name, age, vaccine, gender) VALUES (?,?,?,?,?,?,?)";
+            String connectQuery = "INSERT INTO user (username, password, role) VALUES (?,?,?)";
             PreparedStatement pst = connectDB.prepareStatement(connectQuery);
             pst.setString(1, username_register.getText());
             pst.setString(2, password_register.getText());
-            pst.setString(3, first_name_register.getText());
-            pst.setString(4, last_name_register.getText());
-            pst.setString(5, age_register.getText());
+            pst.setString(3, "MEMBER");
+            pst.executeUpdate();
+            System.out.println("Success!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void createMember(Connection connectDB) throws IOException {
+        Main m = new Main();
+        try{
+            String connectQuery = "INSERT INTO user_member (username, first_name, last_name, age, gender, vaccine, covid_round) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement pst = connectDB.prepareStatement(connectQuery);
+            pst.setString(1, username_register.getText());
+            pst.setString(2, first_name_register.getText());
+            pst.setString(3, last_name_register.getText());
+            pst.setString(4, age_register.getText());
+            pst.setString(5, gender_register.getValue());
             pst.setString(6, "0");
-            pst.setString(7, gender_register.getValue().toString());
+            pst.setString(7, "0");
             pst.executeUpdate();
             System.out.println("Success!");
             m.changeScene("Login.fxml");
@@ -70,7 +88,6 @@ public class Register extends Pages implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public void userGoBackLogin(ActionEvent event) throws IOException {

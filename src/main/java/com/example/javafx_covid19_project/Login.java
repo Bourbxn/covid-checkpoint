@@ -1,5 +1,6 @@
 package com.example.javafx_covid19_project;
 
+import com.example.javafx_covid19_project.member.Menu;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
@@ -33,7 +34,6 @@ public class Login extends Pages{
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         setRoleDB(connectDB);
-        System.out.println(role);
         checkLogin(connectDB);
 
     }
@@ -41,8 +41,8 @@ public class Login extends Pages{
     private void checkLogin(Connection connectDB) throws IOException {
         Main m = new Main();
 
-        String connectQuery = String.format("SELECT * FROM population WHERE username = '%s' AND password = '%s'"
-        ,username.getText().toString(),password.getText().toString());
+        String connectQuery = String.format("SELECT * FROM user WHERE username = '%s' AND password = '%s'"
+                ,username.getText(),password.getText());
 
         try{
             Statement statement = connectDB.createStatement();
@@ -52,8 +52,8 @@ public class Login extends Pages{
                 System.out.println("Failed to login!");
             }
             else{
-                Menu menu = new Menu();
-                String page = getUserPage(role,"MenuAdmin.fxml","Menu.fxml","Menu.fxml");
+                com.example.javafx_covid19_project.member.Menu menu = new Menu();
+                String page = getUserPage(role,"MenuAdmin.fxml","MenuStaff.fxml","Menu.fxml");
                 m.changeScenePassValue(page,menu,username.getText());
                 System.out.println("Successful to Login!");
             }
@@ -65,7 +65,7 @@ public class Login extends Pages{
     }
 
     private void setRoleDB(Connection connectDB) throws IOException{
-        String connectQuery = String.format("SELECT role FROM population WHERE username = '%s'",username.getText());
+        String connectQuery = String.format("SELECT role FROM user WHERE username = '%s'",username.getText());
         try{
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);

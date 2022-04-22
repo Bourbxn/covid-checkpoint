@@ -1,16 +1,14 @@
-package com.example.javafx_covid19_project;
+package com.example.javafx_covid19_project.member;
 
+import com.example.javafx_covid19_project.Main;
+import com.example.javafx_covid19_project.Pages;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Menu extends Pages{
+public class Menu extends Pages {
 
     @FXML private Button check_point_btn;
     @FXML private Button add_timeline_btn;

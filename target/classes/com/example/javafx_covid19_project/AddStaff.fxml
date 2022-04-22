@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #013658;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_covid19_project.admin.AddStaff">
+    <left>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="600.0" fitWidth="280.0" pickOnBounds="true">
+                    <image>
+                        <Image url="@../../../images/LoginBanner.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="600.0" prefWidth="537.0" style="-fx-background-color: #383838;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="84.0" fitWidth="84.0" layoutX="218.0" layoutY="51.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/LoginLogo.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="128.0" layoutY="214.0" prefHeight="24.0" prefWidth="68.0" text="Password" textFill="WHITE">
+                    <font>
+                        <Font name="Mukta Malar Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Button fx:id="create_staff_btn" layoutX="178.0" layoutY="280.0" mnemonicParsing="false" onAction="#staffCreateAccount" prefHeight="40.0" prefWidth="164.0" style="-fx-background-color: #ffffff;" text="Create Staff">
+                    <font>
+                        <Font name="Mukta Malar Bold" size="16.0" />
+                    </font>
+                </Button>
+                <PasswordField fx:id="password_staff" layoutX="222.0" layoutY="215.0" promptText="password" />
+                <Label layoutX="123.0" layoutY="175.0" prefHeight="31.0" prefWidth="73.0" text="Username" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Mukta Malar Bold" size="16.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="username_staff" layoutX="222.0" layoutY="177.0" promptText="username" />
+            <Button fx:id="go_back_menu_btn" layoutX="205.0" layoutY="527.0" mnemonicParsing="false" onAction="#goBackMenu" prefHeight="22.0" prefWidth="110.0" style="-fx-background-color: #ffffff;" text="Back to menu">
+               <font>
+                  <Font name="Mukta Malar Bold" size="14.0" />
+               </font>
+            </Button>
+            </children>
+        </AnchorPane>
+    </right>
+</BorderPane>
