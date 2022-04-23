@@ -1,4 +1,4 @@
-package com.example.javafx_covid19_project.member;
+package com.example.javafx_covid19_project;
 
 import com.example.javafx_covid19_project.DatabaseConnection;
 import com.example.javafx_covid19_project.Main;
@@ -27,7 +27,7 @@ import java.sql.Statement;
 import java.util.*;
 
 
-public class CheckPoint extends Pages implements Initializable {
+public class CheckPointStaff extends Pages implements Initializable {
     @FXML private TextField find_location;
     @FXML private Button find_btn;
     @FXML private ListView<String> time_list_view;
@@ -40,19 +40,20 @@ public class CheckPoint extends Pages implements Initializable {
 
     }
 
-    public void findLocation(ActionEvent event) throws IOException {
+    public void findLocationStaff(ActionEvent event) throws IOException {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         time_list_view.getItems().clear();
-        time_list_view.getItems().add("\tdate\t\t\t\ttime start\t\ttime end");
+        time_list_view.getItems().add("\t\tlocation\t\t\t\tdate\t\t\t\t\t\ttime start\t\t\t\ttime end\t\t\tname\t\t\t\t\t\tgender\t\t\tage");
 
-        String connectQuery = String.format("SELECT datetime_start,datetime_end FROM timeline_covid WHERE location ='%s' ORDER BY datetime_start",find_location.getText());
+        String connectQuery = String.format("SELECT username, datetime_start,datetime_end,location FROM timeline_covid WHERE location = '%s' ORDER BY datetime_start",find_location.getText());
 
         try{
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);
 
             while (queryOutput.next()){
+                String location = queryOutput.getString("location");
                 String dateTimeStart = queryOutput.getString("datetime_start");
                 String dateTimeEnd = queryOutput.getString("datetime_end");
                 String date = (dateTimeStart.split(" ")[0]).split("-")[2] + "/"
@@ -62,9 +63,12 @@ public class CheckPoint extends Pages implements Initializable {
                         +":"+(dateTimeStart.split(" ")[1]).split(":")[1];
                 String timeEnd = (dateTimeEnd.split(" ")[1]).split(":")[0]
                         +":"+(dateTimeEnd.split(" ")[1]).split(":")[1];
-                String listOut = "\t"+ date + "\t\t" + timeStart + "\t\t\t" + timeEnd;
+                String name = getNameDB(queryOutput.getString("username"))[0] + " " + getNameDB(queryOutput.getString("username"))[1];
+                String gender = getNameDB(queryOutput.getString("username"))[3];
+                String age = getNameDB(queryOutput.getString("username"))[2];
+                String listOut = "\t\t" + location + "\t\t\t\t\t"+ date + "\t\t\t\t" + timeStart + "\t\t\t\t\t" + timeEnd + "\t\t\t\t" + name + "\t\t\t\t\t" + gender
+                        + "\t\t\t" + age;
                 time_list_view.getItems().addAll(listOut);
-
             }
 
         } catch (SQLException e) {
@@ -73,8 +77,28 @@ public class CheckPoint extends Pages implements Initializable {
         System.out.println("find location!");
     }
 
+    private String[] getNameDB(String username){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String connectQuery = String.format("SELECT first_name, last_name, age, gender FROM user_member WHERE username = '%s'",username);
+        String[] dataDB = new String[4];
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()){
+                String[] columnLabel = {"first_name", "last_name", "age", "gender"};
+                for(int i=0;i<4;i++) dataDB[i] = queryOutput.getString(columnLabel[i]);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dataDB;
+    }
+
     public void goBackToMenu(ActionEvent event) throws IOException{
         Main m = new Main();
-        m.changeScene("Menu.fxml");
+        m.changeScene("MenuStaff.fxml");
     }
 }

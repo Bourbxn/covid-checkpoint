@@ -7,5 +7,6 @@
    <children>
       <Button fx:id="timeline_list_btn" layoutX="330.0" layoutY="216.0" mnemonicParsing="false" onAction="#goToTimelineList" text="Covid-19 Timeline List" />
       <Button fx:id="check_point_btn" layoutX="358.0" layoutY="287.0" mnemonicParsing="false" onAction="#goToCheckPoint" text="Check Point" />
+      <Button fx:id="logout_btn" layoutX="373.0" layoutY="530.0" mnemonicParsing="false" onAction="#logoutStaff" text="Logout" />
    </children>
 </AnchorPane>
