@@ -3,7 +3,6 @@ package com.example.javafx_covid19_project.staff;
 import com.example.javafx_covid19_project.DatabaseConnection;
 import com.example.javafx_covid19_project.Main;
 import com.example.javafx_covid19_project.Pages;
-import com.example.javafx_covid19_project.TimelineListTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,32 +49,6 @@ public class TimelineList extends Pages implements Initializable {
         timeline_tb.setItems(timelineListTable);
     }
 
-    private String[] getNameDB(String username){
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        String connectQuery = String.format("SELECT first_name, last_name, age, gender FROM user_member WHERE username = '%s'",username);
-        String[] dataDB = new String[4];
-        try{
-            Statement statement = connectDB.createStatement();
-            ResultSet queryOutput = statement.executeQuery(connectQuery);
-
-            while (queryOutput.next()){
-                String[] columnLabel = {"first_name", "last_name", "age", "gender"};
-                for(int i=0;i<4;i++) dataDB[i] = queryOutput.getString(columnLabel[i]);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return dataDB;
-    }
-
-    public void goBackMenuTimelineList(ActionEvent event) throws IOException{
-        System.out.println("go back menu from timeline");
-        Main m = new Main();
-        m.changeScene("MenuStaff.fxml");
-    }
-
     private ObservableList<TimelineListTable> getTimelineListTable(){
         ObservableList<TimelineListTable> timelineList = FXCollections.observableArrayList();
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -107,4 +80,31 @@ public class TimelineList extends Pages implements Initializable {
         }
         return timelineList;
     }
+
+    private String[] getNameDB(String username){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String connectQuery = String.format("SELECT first_name, last_name, age, gender FROM user_member WHERE username = '%s'",username);
+        String[] dataDB = new String[4];
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()){
+                String[] columnLabel = {"first_name", "last_name", "age", "gender"};
+                for(int i=0;i<4;i++) dataDB[i] = queryOutput.getString(columnLabel[i]);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dataDB;
+    }
+
+    public void goBackMenuTimelineList(ActionEvent event) throws IOException{
+        System.out.println("go back menu from timeline");
+        Main m = new Main();
+        m.changeScene("MenuStaff.fxml");
+    }
+
 }

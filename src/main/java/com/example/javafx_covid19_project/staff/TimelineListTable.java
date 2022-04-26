@@ -1,4 +1,4 @@
-package com.example.javafx_covid19_project;
+package com.example.javafx_covid19_project.staff;
 
 import com.example.javafx_covid19_project.staff.TimelineList;
 
@@ -23,6 +23,21 @@ public class TimelineListTable {
         this.name = name;
         this.gender = gender;
         this.age = age;
+    }
+
+    public TimelineListTable(String date,String timeStart,String timeEnd,String name,String gender,String age){
+        this.date = date;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+    }
+
+    public TimelineListTable(String date,String timeStart,String timeEnd){
+        this.date = date;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
     }
 
     public String getLocation() {
