@@ -1,4 +1,4 @@
-package com.example.javafx_covid19_project;
+package com.example.javafx_covid19_project.staff;
 
 import com.example.javafx_covid19_project.DatabaseConnection;
 import com.example.javafx_covid19_project.Main;

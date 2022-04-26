@@ -53,19 +53,19 @@ public class Register extends Pages implements Initializable {
         createMember(connectDB);
     }
 
-    private void addToUser(Connection connectDB) {
-        try{
-            String connectQuery = "INSERT INTO user (username, password, role) VALUES (?,?,?)";
-            PreparedStatement pst = connectDB.prepareStatement(connectQuery);
-            pst.setString(1, username_register.getText());
-            pst.setString(2, password_register.getText());
-            pst.setString(3, "MEMBER");
-            pst.executeUpdate();
-            System.out.println("Success!");
+    private void addToUser(Connection connectDB) {try{
+        String connectQuery = "INSERT INTO user (username, password, role) VALUES (?,?,?)";
+        PreparedStatement pst = connectDB.prepareStatement(connectQuery);
+        pst.setString(1, username_register.getText());
+        pst.setString(2, password_register.getText());
+        pst.setString(3, "MEMBER");
+        pst.executeUpdate();
+        System.out.println("Success!");
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
 
     }
 

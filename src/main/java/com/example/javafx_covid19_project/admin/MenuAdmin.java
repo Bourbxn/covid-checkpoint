@@ -10,10 +10,29 @@ import java.io.IOException;
 
 public class MenuAdmin extends Pages {
     @FXML Button add_staff_btn;
+    @FXML Button logout_btn;
+    @FXML Button staff_manage_btn;
+    @FXML Button member_manage_btn;
 
     public void goToAddStaff(ActionEvent event) throws IOException{
         Main m = new Main();
         m.changeScene("AddStaff.fxml");
         System.out.println("go to add staff");
+    }
+
+    public void logoutAdmin(ActionEvent event) throws IOException{
+        Main m = new Main();
+        m.changeScene("Login.fxml");
+        System.out.println("go to login");
+    }
+
+    public void goStaffManage(ActionEvent event) throws IOException{
+        Main m = new Main();
+        m.changeScene("StaffManagement.fxml");
+    }
+
+    public void goMemberManage(ActionEvent event) throws IOException{
+        Main m = new Main();
+        m.changeScene("MemberManagement.fxml");
     }
 }

@@ -12,6 +12,9 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <Button fx:id="add_staff_btn" layoutX="366.0" layoutY="253.0" mnemonicParsing="false" onAction="#goToAddStaff" text="Add staff" />
+      <Button fx:id="add_staff_btn" layoutX="368.0" layoutY="216.0" mnemonicParsing="false" onAction="#goToAddStaff" text="Add staff" />
+      <Button fx:id="logout_btn" layoutX="373.0" layoutY="520.0" mnemonicParsing="false" onAction="#logoutAdmin" text="Logout" />
+      <Button fx:id="staff_manage_btn" layoutX="342.0" layoutY="273.0" mnemonicParsing="false" onAction="#goStaffManage" text="Staff Management" />
+      <Button fx:id="member_manage_btn" layoutX="333.0" layoutY="322.0" mnemonicParsing="false" onAction="#goMemberManage" text="Member Management" />
    </children>
 </AnchorPane>

@@ -30,7 +30,6 @@ public class AddStaff {
 
     private void createAccount(Connection connectDB) throws IOException {
         Main m = new Main();
-
         try{
             String connectQuery = "INSERT INTO user (username, password, role) VALUES (?,?,?)";
             PreparedStatement pst = connectDB.prepareStatement(connectQuery);
