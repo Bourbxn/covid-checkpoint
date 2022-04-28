@@ -20,7 +20,6 @@ import java.io.IOException;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.net.URL;
@@ -88,6 +87,7 @@ public class CheckPoint extends Pages implements Initializable {
 
     public void goBackToMenu(ActionEvent event) throws IOException{
         Main m = new Main();
-        m.changeScene("Menu.fxml");
+        Menu menu = new Menu();
+        m.changeScenePassValue("Menu.fxml",menu,getUserLoggedIn());
     }
 }

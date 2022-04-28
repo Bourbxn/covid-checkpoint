@@ -2,27 +2,20 @@ package com.example.javafx_covid19_project.admin;
 
 import com.example.javafx_covid19_project.DatabaseConnection;
 import com.example.javafx_covid19_project.Main;
-import com.example.javafx_covid19_project.MemberListTable;
 import com.example.javafx_covid19_project.Pages;
-import com.example.javafx_covid19_project.staff.TimelineListTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MemberManagement extends Pages implements Initializable {
@@ -86,7 +79,37 @@ public class MemberManagement extends Pages implements Initializable {
     private void removeMemberDB(String username){
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String connectQuery = String.format("DELETE FROM user, user_member, timeline_covid WHERE username = '%s'",username);
+        removeMemberUser(connectDB,username);
+        removeMemberUserMember(connectDB,username);
+        removeMemberTimelineCovid(connectDB,username);
+    }
+
+    private void removeMemberUser(Connection connectDB,String username){
+        String connectQuery = String.format("DELETE FROM user WHERE username = '%s'",username);
+        try{
+            PreparedStatement pst = connectDB.prepareStatement(connectQuery);
+            pst.executeUpdate();
+            System.out.println("Success!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void removeMemberUserMember(Connection connectDB,String username){
+        String connectQuery = String.format("DELETE FROM user_member WHERE username = '%s'",username);
+        try{
+            PreparedStatement pst = connectDB.prepareStatement(connectQuery);
+            pst.executeUpdate();
+            System.out.println("Success!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void removeMemberTimelineCovid(Connection connectDB,String username){
+        String connectQuery = String.format("DELETE FROM timeline_covid WHERE username = '%s'",username);
         try{
             PreparedStatement pst = connectDB.prepareStatement(connectQuery);
             pst.executeUpdate();

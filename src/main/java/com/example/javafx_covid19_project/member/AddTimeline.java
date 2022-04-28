@@ -181,6 +181,7 @@ public class AddTimeline extends Pages implements Initializable {
 
     public void backMenuFromAddTimeline(ActionEvent event) throws IOException{
         Main m = new Main();
-        m.changeScene("Menu.fxml");
+        Menu menu = new Menu();
+        m.changeScenePassValue("Menu.fxml",menu,getUserLoggedIn());
     }
 }

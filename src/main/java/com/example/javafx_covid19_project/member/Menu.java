@@ -1,6 +1,7 @@
 package com.example.javafx_covid19_project.member;
 
 import com.example.javafx_covid19_project.Main;
+import com.example.javafx_covid19_project.MyCovidTimeline;
 import com.example.javafx_covid19_project.Pages;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,8 @@ public class Menu extends Pages {
     @FXML private Button check_point_btn;
     @FXML private Button add_timeline_btn;
     @FXML private Button logout_btn;
+    @FXML private Button info_btn;
+    @FXML private Button my_covid_timeline_btn;
 
 
     public void goToAddTimeline(ActionEvent event) throws IOException{
@@ -24,9 +27,23 @@ public class Menu extends Pages {
 
     public void goToCheckPoint(ActionEvent event) throws IOException{
         Main m = new Main();
-        CheckPoint checkPoint = new CheckPoint();
+        Pages checkPoint = new CheckPoint();
         m.changeScenePassValue("CheckPoint.fxml",checkPoint,getUserLoggedIn());
-        System.out.println("Go to CheckPoint with "+getUserLoggedIn());
+        System.out.println("Go to CheckPoint with " + getUserLoggedIn());
+    }
+
+    public void goToInfo(ActionEvent event) throws IOException{
+        Main m = new Main();
+        Pages infoMember = new InfoMember();
+        m.changeScenePassValue("InfoMember.fxml",infoMember,getUserLoggedIn());
+        System.out.println("Go to Info with " + getUserLoggedIn());
+    }
+
+    public void goToMyCovidTimeline(ActionEvent event) throws IOException{
+        Main m = new Main();
+        Pages myCovidTimeline = new MyCovidTimeline();
+        m.changeScenePassValue("MyCovidTimeline.fxml",myCovidTimeline,getUserLoggedIn());
+        System.out.println("Go to my covid timeline with " + getUserLoggedIn());
     }
 
 

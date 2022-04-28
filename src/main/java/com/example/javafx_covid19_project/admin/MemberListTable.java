@@ -1,4 +1,4 @@
-package com.example.javafx_covid19_project;
+package com.example.javafx_covid19_project.admin;
 
 public class MemberListTable {
     private String username,name,age,gender,covidRound;

@@ -16,7 +16,7 @@
         </Text>
         <Button fx:id="back_to_menu_btn" layoutX="353.0" layoutY="559.0" mnemonicParsing="false" onAction="#backMenuMemberManage" text="Back to menu" />
         <Button fx:id="remove_member_btn" layoutX="368.0" layoutY="511.0" mnemonicParsing="false" onAction="#removeMember" text="Remove" />
-      <TableView fx:id="member_tb" layoutX="100.0" layoutY="100.0" prefHeight="401.0" prefWidth="599.0">
+      <TableView fx:id="member_tb" layoutX="101.0" layoutY="100.0" prefHeight="401.0" prefWidth="599.0">
         <columns>
           <TableColumn fx:id="col_username" prefWidth="115.0" text="Username" />
           <TableColumn fx:id="col_name" prefWidth="225.0" text="Name" />

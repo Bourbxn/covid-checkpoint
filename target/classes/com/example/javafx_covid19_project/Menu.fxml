@@ -11,6 +11,8 @@
             <Button fx:id="add_timeline_btn" focusTraversable="false" layoutX="355.0" layoutY="287.0" mnemonicParsing="false" onAction="#goToAddTimeline" text="Add Timeline" />
             <Button fx:id="logout_btn" focusTraversable="false" layoutX="373.0" layoutY="523.0" mnemonicParsing="false" onAction="#userLogout" text="Logout" />
             <Button fx:id="check_point_btn" focusTraversable="false" layoutX="358.0" layoutY="238.0" mnemonicParsing="false" onAction="#goToCheckPoint" text="Check Point" />
+            <Button fx:id="info_btn" layoutX="374.0" layoutY="333.0" mnemonicParsing="false" onAction="#goToInfo" text="Profile" />
+            <Button fx:id="my_covid_timeline_btn" layoutX="334.0" layoutY="383.0" mnemonicParsing="false" onAction="#goToMyCovidTimeline" text="My covid-19 timeline" />
          </children>
       </AnchorPane>
    </center>

@@ -34,19 +34,19 @@
                     <Font name="Mukta Malar Bold" size="16.0" />
                 </font>
             </Label>
-            <TextField fx:id="username" layoutX="222.0" layoutY="187.0" promptText="username" />
-            <Button fx:id="button" layoutX="219.0" layoutY="312.0" mnemonicParsing="false" onAction="#userLogin" prefHeight="0.0" prefWidth="83.0" style="-fx-background-color: #ffffff;" text="Login">
+            <TextField fx:id="username_tf" layoutX="222.0" layoutY="187.0" promptText="username" />
+            <Button fx:id="login_btn" layoutX="219.0" layoutY="312.0" mnemonicParsing="false" onAction="#userLoginMain" prefHeight="0.0" prefWidth="83.0" style="-fx-background-color: #ffffff;" text="Login">
                 <font>
                     <Font name="Mukta Malar Bold" size="16.0" />
                 </font>
             </Button>
-            <PasswordField fx:id="password" layoutX="222.0" layoutY="242.0" promptText="password" />
-         <AnchorPane layoutX="11.0" layoutY="551.0" prefHeight="49.0" prefWidth="520.0" style="-fx-background-color: #013658;">
-            <children>
-               <Hyperlink fx:id="createAccount" layoutX="265.0" layoutY="13.0" onAction="#userCreateAccount" text="Create Account" />
-               <Label layoutX="138.0" layoutY="16.0" text="Don't have an account?" textFill="WHITE" />
-            </children>
-         </AnchorPane>
+            <PasswordField fx:id="password_pf" layoutX="222.0" layoutY="242.0" promptText="password" />
+            <AnchorPane layoutX="11.0" layoutY="551.0" prefHeight="49.0" prefWidth="520.0" style="-fx-background-color: #013658;">
+                <children>
+                    <Hyperlink fx:id="create_account_hp" layoutX="265.0" layoutY="13.0" onAction="#userCreateAccountMain" text="Create Account" />
+                    <Label layoutX="138.0" layoutY="16.0" text="Don't have an account?" textFill="WHITE" />
+                </children>
+            </AnchorPane>
         </AnchorPane>
     </right>
 </BorderPane>

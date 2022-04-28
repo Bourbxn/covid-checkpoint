@@ -19,7 +19,6 @@ import java.io.IOException;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.net.URL;
