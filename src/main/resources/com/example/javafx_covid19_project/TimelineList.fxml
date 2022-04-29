@@ -15,15 +15,16 @@
          </font>
       </Text>
       <Button fx:id="go_back_menu_timeline" layoutX="354.0" layoutY="559.0" mnemonicParsing="false" onAction="#goBackMenuTimelineList" text="Back to menu" />
-      <TableView fx:id="timeline_tb" layoutX="104.0" layoutY="94.0" prefHeight="436.0" prefWidth="593.0">
+      <TableView fx:id="timeline_tb" layoutX="26.0" layoutY="91.0" prefHeight="436.0" prefWidth="748.0">
          <columns>
-            <TableColumn fx:id="col_location" prefWidth="127.0" text="Location" />
             <TableColumn fx:id="col_date" prefWidth="99.0" text="Date" />
             <TableColumn fx:id="col_timestart" prefWidth="70.0" text="Time start" />
-            <TableColumn fx:id="col_timeend" prefWidth="65.0" text="Time end" />
-            <TableColumn fx:id="col_name" prefWidth="131.0" text="Name" />
-            <TableColumn fx:id="col_gender" minWidth="0.0" prefWidth="57.0" text="Gender" />
-            <TableColumn fx:id="col_age" prefWidth="43.0" text="Age" />
+            <TableColumn fx:id="col_timeend" prefWidth="81.0" text="Time end" />
+            <TableColumn fx:id="col_location" prefWidth="161.0" text="Location" />
+            <TableColumn fx:id="col_sickness" minWidth="0.0" prefWidth="65.0" text="Sickness" />
+            <TableColumn fx:id="col_name" prefWidth="154.0" text="Name" />
+            <TableColumn fx:id="col_gender" prefWidth="55.0" text="Gender" />
+            <TableColumn fx:id="col_age" prefWidth="62.0" text="Age" />
          </columns>
       </TableView>
    </children>

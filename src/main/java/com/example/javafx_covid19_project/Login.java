@@ -2,23 +2,41 @@ package com.example.javafx_covid19_project;
 
 import com.example.javafx_covid19_project.member.Menu;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
-public class Login {
+public class Login implements Initializable{
     @FXML private TextField username_tf;
     @FXML private PasswordField password_pf;
     @FXML private Button login_btn;
     @FXML private Hyperlink create_account_hp;
+    @FXML private Line username_line;
+    @FXML private Line password_line;
+    @FXML private ImageView login_hover_btn;
+
     private String role;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        login_hover_btn.setVisible(false);
+    }
 
     public void userLoginMain() throws IOException {
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -73,5 +91,25 @@ public class Login {
         m.changeScene("Register.fxml");
     }
 
+    public void changeUsernameLine(){
+        password_line.setStroke(Color.rgb(0,0,0));
+        username_line.setStroke(Color.rgb(0,137,150));
+    }
 
+    public void changeBackUsernameLine(){
+        username_line.setStroke(Color.rgb(0,0,0));
+    }
+
+    public void changePasswordLine(){
+        username_line.setStroke(Color.rgb(0,0,0));
+        password_line.setStroke(Color.rgb(0,137,150));
+    }
+
+    public void changeButtonColor(){
+        login_hover_btn.setVisible(true);
+    }
+
+    public void changeBackButtonColor(){
+        login_hover_btn.setVisible(false);
+    }
 }

@@ -4,8 +4,6 @@ import com.example.javafx_covid19_project.DatabaseConnection;
 import com.example.javafx_covid19_project.Main;
 import com.example.javafx_covid19_project.Pages;
 import com.example.javafx_covid19_project.staff.TimelineListTable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,34 +31,36 @@ import java.util.*;
 public class CheckPoint extends Pages implements Initializable {
     @FXML private TextField find_location;
     @FXML private Button find_btn;
-    @FXML private ListView<String> time_list_view;
     @FXML private Button back_to_menu_btn;
-    @FXML private TableView<TimelineListTable> timeline_tb;
-    @FXML private TableColumn<TimelineListTable, String> col_date;
-    @FXML private TableColumn<TimelineListTable, String> col_timestart;
-    @FXML private TableColumn<TimelineListTable, String> col_timeend;
-    //ArrayList<String> timeFromLocation = new ArrayList<>();
+    @FXML private TableView<CheckPointTable> timeline_tb;
+    @FXML private TableColumn<CheckPointTable, String> col_date;
+    @FXML private TableColumn<CheckPointTable, String> col_timestart;
+    @FXML private TableColumn<CheckPointTable, String> col_timeend;
+    @FXML private TableColumn<CheckPointTable, String> col_sickness;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        col_date.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("date"));
-        col_timestart.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("timeStart"));
-        col_timeend.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("timeEnd"));
+        col_date.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("date"));
+        col_timestart.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("timeStart"));
+        col_timeend.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("timeEnd"));
+        col_sickness.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("sickness"));
     }
 
     public void findLocation(ActionEvent event) throws IOException {
-        ObservableList<TimelineListTable> timelineListTable = getTimelineCheckpointTable();
-        col_date.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("date"));
-        col_timestart.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("timeStart"));
-        col_timeend.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("timeEnd"));
+        ObservableList<CheckPointTable> timelineListTable = getTimelineCheckpointTable();
+        col_date.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("date"));
+        col_timestart.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("timeStart"));
+        col_timeend.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("timeEnd"));
+        col_sickness.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("sickness"));
         timeline_tb.setItems(timelineListTable);
     }
 
-    private ObservableList<TimelineListTable> getTimelineCheckpointTable(){
-        ObservableList<TimelineListTable> timelineCheckpoint = FXCollections.observableArrayList();
+    private ObservableList<CheckPointTable> getTimelineCheckpointTable(){
+        ObservableList<CheckPointTable> timelineCheckpoint = FXCollections.observableArrayList();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String connectQuery = String.format("SELECT username, datetime_start,datetime_end,location FROM timeline_covid WHERE location = '%s' ORDER BY datetime_start",find_location.getText());
+        String connectQuery = String.format("SELECT username, datetime_start, datetime_end, sickness FROM timeline_covid WHERE location = '%s' ORDER BY datetime_start",find_location.getText());
 
         try{
             Statement statement = connectDB.createStatement();
@@ -75,7 +75,8 @@ public class CheckPoint extends Pages implements Initializable {
                         +":"+(dateTimeStart.split(" ")[1]).split(":")[1];
                 String timeEnd = (dateTimeEnd.split(" ")[1]).split(":")[0]
                         +":"+(dateTimeEnd.split(" ")[1]).split(":")[1];
-                timelineCheckpoint.add(new TimelineListTable(date, timeStart, timeEnd));
+                String sickness = changeSicknessToStr(queryOutput.getString("sickness"));
+                timelineCheckpoint.add(new CheckPointTable(date, timeStart, timeEnd, sickness));
             }
             System.out.println("Success!");
 
@@ -85,9 +86,18 @@ public class CheckPoint extends Pages implements Initializable {
         return timelineCheckpoint;
     }
 
+    private String changeSicknessToStr(String sickness){
+        return switch (sickness) {
+            case "0" -> "Yes";
+            case "1" -> "No";
+            default -> null;
+        };
+    }
+
     public void goBackToMenu(ActionEvent event) throws IOException{
         Main m = new Main();
         Menu menu = new Menu();
         m.changeScenePassValue("Menu.fxml",menu,getUserLoggedIn());
     }
+
 }

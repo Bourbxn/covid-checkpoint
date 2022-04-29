@@ -21,11 +21,12 @@
             <TextField fx:id="find_location" layoutX="320.0" layoutY="81.0" promptText="location" />
             <Button fx:id="find_btn" layoutX="381.0" layoutY="129.0" mnemonicParsing="false" onAction="#findLocation" text="find" />
             <Button fx:id="back_to_menu_btn" layoutX="354.0" layoutY="548.0" mnemonicParsing="false" onAction="#goBackToMenu" text="Back to menu" />
-            <TableView fx:id="timeline_tb" layoutX="195.0" layoutY="180.0" prefHeight="345.0" prefWidth="411.0">
+            <TableView fx:id="timeline_tb" layoutX="125.0" layoutY="178.0" prefHeight="345.0" prefWidth="550.0">
               <columns>
                 <TableColumn fx:id="col_date" prefWidth="145.0" text="Date" />
                 <TableColumn fx:id="col_timestart" prefWidth="140.0" text="Time start" />
-                  <TableColumn fx:id="col_timeend" prefWidth="125.0" text="Time end" />
+                  <TableColumn fx:id="col_timeend" prefWidth="148.0" text="Time end" />
+                  <TableColumn fx:id="col_sickness" prefWidth="116.0" text="Sickness" />
               </columns>
             </TableView>
          </children>

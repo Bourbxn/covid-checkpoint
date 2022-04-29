@@ -21,14 +21,15 @@
                 <TextField fx:id="find_location" layoutX="320.0" layoutY="81.0" promptText="location" />
                 <Button fx:id="find_btn" layoutX="381.0" layoutY="129.0" mnemonicParsing="false" onAction="#findLocationStaff" text="find" />
                 <Button fx:id="back_to_menu_btn" layoutX="354.0" layoutY="548.0" mnemonicParsing="false" onAction="#goBackToMenu" text="Back to menu" />
-            <TableView fx:id="timeline_tb" layoutX="65.0" layoutY="177.0" prefHeight="348.0" prefWidth="670.0">
+            <TableView fx:id="timeline_tb" layoutX="28.0" layoutY="176.0" prefHeight="348.0" prefWidth="744.0">
                <columns>
                   <TableColumn fx:id="col_date" prefWidth="132.0" text="Date" />
                   <TableColumn fx:id="col_timestart" minWidth="4.0" text="Time start" />
                   <TableColumn fx:id="col_timeend" minWidth="0.0" text="Time end" />
-                  <TableColumn fx:id="col_name" prefWidth="196.0" text="Name" />
-                  <TableColumn fx:id="col_gender" prefWidth="94.0" text="Gender" />
-                  <TableColumn fx:id="col_age" prefWidth="87.0" text="Age" />
+                  <TableColumn fx:id="col_sickness" prefWidth="74.0" text="Sickness" />
+                  <TableColumn fx:id="col_name" prefWidth="216.0" text="Name" />
+                  <TableColumn fx:id="col_gender" prefWidth="87.0" text="Gender" />
+                  <TableColumn fx:id="col_age" prefWidth="75.0" text="Age" />
                </columns>
             </TableView>
             </children>

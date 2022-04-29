@@ -30,6 +30,7 @@ public class TimelineList extends Pages implements Initializable {
     @FXML private TableColumn<TimelineListTable, String> col_name;
     @FXML private TableColumn<TimelineListTable, String> col_gender;
     @FXML private TableColumn<TimelineListTable, String> col_age;
+    @FXML private TableColumn<TimelineListTable, String> col_sickness;
 
 
     @Override
@@ -46,6 +47,7 @@ public class TimelineList extends Pages implements Initializable {
         col_name.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("name"));
         col_gender.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("gender"));
         col_age.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("age"));
+        col_sickness.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("sickness"));
         timeline_tb.setItems(timelineListTable);
     }
 
@@ -53,7 +55,7 @@ public class TimelineList extends Pages implements Initializable {
         ObservableList<TimelineListTable> timelineList = FXCollections.observableArrayList();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String connectQuery = "SELECT username, datetime_start,datetime_end,location FROM timeline_covid ORDER BY datetime_start";
+        String connectQuery = "SELECT username, datetime_start,datetime_end,location, sickness FROM timeline_covid ORDER BY datetime_start";
         try{
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);
@@ -71,7 +73,8 @@ public class TimelineList extends Pages implements Initializable {
                 String name = getNameDB(queryOutput.getString("username"))[0] + " " + getNameDB(queryOutput.getString("username"))[1];
                 String gender = getNameDB(queryOutput.getString("username"))[3];
                 String age = getNameDB(queryOutput.getString("username"))[2];
-                timelineList.add(new TimelineListTable(location,date,timeStart,timeEnd,name,gender,age));
+                String sickness = changeSicknessToStr(queryOutput.getString("sickness"));
+                timelineList.add(new TimelineListTable(location,date,timeStart,timeEnd,name,gender,age,sickness));
             }
             System.out.println("Success!");
 
@@ -99,6 +102,14 @@ public class TimelineList extends Pages implements Initializable {
             e.printStackTrace();
         }
         return dataDB;
+    }
+
+    private String changeSicknessToStr(String sickness){
+        return switch (sickness) {
+            case "0" -> "Yes";
+            case "1" -> "No";
+            default -> null;
+        };
     }
 
     public void goBackMenuTimelineList(ActionEvent event) throws IOException{

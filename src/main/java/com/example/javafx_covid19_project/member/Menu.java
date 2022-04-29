@@ -1,7 +1,7 @@
 package com.example.javafx_covid19_project.member;
 
+import com.example.javafx_covid19_project.AddCovidTimeline;
 import com.example.javafx_covid19_project.Main;
-import com.example.javafx_covid19_project.MyCovidTimeline;
 import com.example.javafx_covid19_project.Pages;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,10 +19,13 @@ public class Menu extends Pages {
 
 
     public void goToAddTimeline(ActionEvent event) throws IOException{
+//        Main m = new Main();
+//        AddTimeline addTimeline = new AddTimeline();
+//        m.changeScenePassValue("AddTimeline.fxml",addTimeline,getUserLoggedIn());
+//        System.out.println("Go to AddTimeline with "+getUserLoggedIn());
         Main m = new Main();
-        AddTimeline addTimeline = new AddTimeline();
-        m.changeScenePassValue("AddTimeline.fxml",addTimeline,getUserLoggedIn());
-        System.out.println("Go to AddTimeline with "+getUserLoggedIn());
+        AddCovidTimeline addCovidTimeline = new AddCovidTimeline();
+        m.changeScenePassValue("AddCovidTimeline.fxml",addCovidTimeline,getUserLoggedIn());
     }
 
     public void goToCheckPoint(ActionEvent event) throws IOException{

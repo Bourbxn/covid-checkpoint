@@ -1,21 +1,22 @@
-package com.example.javafx_covid19_project;
+package com.example.javafx_covid19_project.staff;
 
-public class MyCovidTimelineTable {
+public class CheckPointStaffTable {
     private String date;
     private String timeStart;
     private String timeEnd;
-    private String location;
+    private String name;
+    private String gender;
+    private String age;
     private String sickness;
 
-    public MyCovidTimelineTable(){
 
-    }
-
-    public MyCovidTimelineTable(String date,String timeStart,String timeEnd,String location,String sickness){
+    public CheckPointStaffTable(String date, String timeStart, String timeEnd, String name, String gender, String age, String sickness) {
         this.date = date;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
-        this.location = location;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
         this.sickness = sickness;
     }
 
@@ -43,12 +44,28 @@ public class MyCovidTimelineTable {
         this.timeEnd = timeEnd;
     }
 
-    public String getLocation() {
-        return location;
+    public String getName() {
+        return name;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public String getSickness() {

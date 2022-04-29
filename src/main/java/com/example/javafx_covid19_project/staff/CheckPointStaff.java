@@ -33,41 +33,46 @@ public class CheckPointStaff extends Pages implements Initializable {
     @FXML private TextField find_location;
     @FXML private Button find_btn;
     @FXML private Button back_to_menu_btn;
-    @FXML private TableView<TimelineListTable> timeline_tb;
-    @FXML private TableColumn<TimelineListTable, String> col_date;
-    @FXML private TableColumn<TimelineListTable, String> col_timestart;
-    @FXML private TableColumn<TimelineListTable, String> col_timeend;
-    @FXML private TableColumn<TimelineListTable, String> col_name;
-    @FXML private TableColumn<TimelineListTable, String> col_gender;
-    @FXML private TableColumn<TimelineListTable, String> col_age;
+    @FXML private TableView<CheckPointStaffTable> timeline_tb;
+    @FXML private TableColumn<CheckPointStaffTable, String> col_date;
+    @FXML private TableColumn<CheckPointStaffTable, String> col_timestart;
+    @FXML private TableColumn<CheckPointStaffTable, String> col_timeend;
+    @FXML private TableColumn<CheckPointStaffTable, String> col_name;
+    @FXML private TableColumn<CheckPointStaffTable, String> col_gender;
+    @FXML private TableColumn<CheckPointStaffTable, String> col_age;
+    @FXML private TableColumn<CheckPointStaffTable, String> col_sickness;
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        col_date.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("date"));
-        col_timestart.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("timeStart"));
-        col_timeend.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("timeEnd"));
-        col_name.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("name"));
-        col_gender.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("gender"));
-        col_age.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("age"));
+        col_date.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("date"));
+        col_timestart.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("timeStart"));
+        col_timeend.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("timeEnd"));
+        col_name.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("name"));
+        col_gender.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("gender"));
+        col_age.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("age"));
+        col_sickness.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("sickness"));
+
     }
 
     public void findLocationStaff(ActionEvent event) throws IOException {
-        ObservableList<TimelineListTable> timelineListTable = getTimelineCheckpointTable();
-        col_date.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("date"));
-        col_timestart.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("timeStart"));
-        col_timeend.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("timeEnd"));
-        col_name.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("name"));
-        col_gender.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("gender"));
-        col_age.setCellValueFactory(new PropertyValueFactory<TimelineListTable,String>("age"));
+        ObservableList<CheckPointStaffTable> timelineListTable = getTimelineCheckpointTable();
+        col_date.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("date"));
+        col_timestart.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("timeStart"));
+        col_timeend.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("timeEnd"));
+        col_name.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("name"));
+        col_gender.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("gender"));
+        col_age.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("age"));
+        col_sickness.setCellValueFactory(new PropertyValueFactory<CheckPointStaffTable,String>("sickness"));
         timeline_tb.setItems(timelineListTable);
     }
 
-    private ObservableList<TimelineListTable> getTimelineCheckpointTable(){
-        ObservableList<TimelineListTable> timelineCheckpoint = FXCollections.observableArrayList();
+    private ObservableList<CheckPointStaffTable> getTimelineCheckpointTable(){
+        ObservableList<CheckPointStaffTable> timelineCheckpoint = FXCollections.observableArrayList();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String connectQuery = String.format("SELECT username, datetime_start,datetime_end,location FROM timeline_covid WHERE location = '%s' ORDER BY datetime_start",find_location.getText());
+        String connectQuery = String.format("SELECT username, datetime_start,datetime_end,location, sickness FROM timeline_covid WHERE location = '%s' ORDER BY datetime_start",find_location.getText());
 
         try{
             Statement statement = connectDB.createStatement();
@@ -85,7 +90,8 @@ public class CheckPointStaff extends Pages implements Initializable {
                 String name = getNameDB(queryOutput.getString("username"))[0] + "  " + getNameDB(queryOutput.getString("username"))[1];
                 String gender = getNameDB(queryOutput.getString("username"))[3];
                 String age = getNameDB(queryOutput.getString("username"))[2];
-                timelineCheckpoint.add(new TimelineListTable(date,timeStart,timeEnd,name,gender,age));
+                String sickness = changeSicknessToStr(queryOutput.getString("sickness"));
+                timelineCheckpoint.add(new CheckPointStaffTable(date,timeStart,timeEnd,name,gender,age,sickness));
             }
             System.out.println("Success!");
 
@@ -113,6 +119,14 @@ public class CheckPointStaff extends Pages implements Initializable {
             e.printStackTrace();
         }
         return dataDB;
+    }
+
+    private String changeSicknessToStr(String sickness){
+        return switch (sickness) {
+            case "0" -> "Yes";
+            case "1" -> "No";
+            default -> null;
+        };
     }
 
     public void goBackToMenu(ActionEvent event) throws IOException{

@@ -10,12 +10,13 @@ public class TimelineListTable {
     private String gender;
     private String age;
     private String location;
+    private String sickness;
 
     public TimelineListTable(){
 
     }
 
-    public TimelineListTable(String location, String date,String timeStart,String timeEnd,String name,String gender,String age){
+    public TimelineListTable(String location, String date,String timeStart,String timeEnd,String name,String gender,String age,String sickness){
         this.location = location;
         this.date = date;
         this.timeStart = timeStart;
@@ -23,21 +24,7 @@ public class TimelineListTable {
         this.name = name;
         this.gender = gender;
         this.age = age;
-    }
-
-    public TimelineListTable(String date,String timeStart,String timeEnd,String name,String gender,String age){
-        this.date = date;
-        this.timeStart = timeStart;
-        this.timeEnd = timeEnd;
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-    }
-
-    public TimelineListTable(String date,String timeStart,String timeEnd){
-        this.date = date;
-        this.timeStart = timeStart;
-        this.timeEnd = timeEnd;
+        this.sickness = sickness;
     }
 
     public String getLocation() {
@@ -94,5 +81,13 @@ public class TimelineListTable {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getSickness() {
+        return sickness;
+    }
+
+    public void setSickness(String sickness) {
+        this.sickness = sickness;
     }
 }
