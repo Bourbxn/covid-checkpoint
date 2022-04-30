@@ -1,5 +1,6 @@
 package com.example.javafx_covid19_project.member;
 
+import com.example.javafx_covid19_project.AutoInitialize;
 import com.example.javafx_covid19_project.DatabaseConnection;
 import com.example.javafx_covid19_project.Main;
 import com.example.javafx_covid19_project.Pages;
@@ -17,6 +18,8 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,7 +31,7 @@ import java.sql.Statement;
 import java.util.*;
 
 
-public class CheckPoint extends Pages implements Initializable {
+public class CheckPoint extends Pages implements Initializable, AutoInitialize {
     @FXML private TextField find_location;
     @FXML private Button find_btn;
     @FXML private Button back_to_menu_btn;
@@ -37,6 +40,7 @@ public class CheckPoint extends Pages implements Initializable {
     @FXML private TableColumn<CheckPointTable, String> col_timestart;
     @FXML private TableColumn<CheckPointTable, String> col_timeend;
     @FXML private TableColumn<CheckPointTable, String> col_sickness;
+    @FXML private Line search_line;
 
 
     @Override
@@ -100,4 +104,12 @@ public class CheckPoint extends Pages implements Initializable {
         m.changeScenePassValue("Menu.fxml",menu,getUserLoggedIn());
     }
 
+    @Override
+    public void autoInitialize() {
+
+    }
+
+    public void changeLocationColor(){
+        search_line.setStroke(Color.rgb(0,137,150));
+    }
 }

@@ -28,8 +28,11 @@ public class MyCovidTimeline extends Pages implements AutoInitialize {
     @FXML private TableColumn<MyCovidTimelineTable, String> col_time_end;
     @FXML private TableColumn<MyCovidTimelineTable, String> col_sickness;
     @FXML private Button go_back_menu_btn;
-
-
+    @FXML private Button check_point_btn;
+    @FXML private Button add_timeline_btn;
+    @FXML private Button logout_btn;
+    @FXML private Button my_covid_timeline_btn;
+    @FXML private Button profile_btn;
 
 
     @Override
@@ -68,7 +71,7 @@ public class MyCovidTimeline extends Pages implements AutoInitialize {
                 String timeEnd = (dateTimeEnd.split(" ")[1]).split(":")[0]
                         +":"+(dateTimeEnd.split(" ")[1]).split(":")[1];
                 String sickness = changeSicknessToStr(queryOutput.getString("sickness"));
-                timelineList.add(new MyCovidTimelineTable(location,date,timeStart,timeEnd,sickness));
+                timelineList.add(new MyCovidTimelineTable(date,timeStart,timeEnd,location,sickness));
             }
             System.out.println("Success!");
 
@@ -107,11 +110,5 @@ public class MyCovidTimeline extends Pages implements AutoInitialize {
             case "1" -> "No";
             default -> null;
         };
-    }
-
-    public void goBackMenuMyCovidTimeline(ActionEvent event) throws IOException{
-        Main m = new Main();
-        Menu menu = new Menu();
-        m.changeScenePassValue("Menu.fxml",menu,getUserLoggedIn());
     }
 }
