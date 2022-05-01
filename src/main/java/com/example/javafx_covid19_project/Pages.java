@@ -1,6 +1,8 @@
 package com.example.javafx_covid19_project;
 
 import com.example.javafx_covid19_project.member.*;
+import com.example.javafx_covid19_project.staff.CheckPointStaff;
+import com.example.javafx_covid19_project.staff.MenuStaff;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
@@ -26,6 +28,8 @@ public class Pages {
             default -> null;
         };
     }
+
+    //Member
 
     public void goToProfile(ActionEvent event) throws IOException{
         Main m = new Main();
@@ -56,6 +60,23 @@ public class Pages {
         System.out.println("Go to my covid timeline with " + getUserLoggedIn());
     }
 
+    //Staff
+
+    public void goToCheckPointStaff(ActionEvent event) throws IOException {
+        Main m = new Main();
+        Pages checkPointStaff = new CheckPointStaff();
+        m.changeScenePassValue("CheckPointStaff.fxml",checkPointStaff,getUserLoggedIn());
+        System.out.println("Go to checkpoint staff with " + getUserLoggedIn());
+    }
+
+    public void goToTimelineList(ActionEvent event) throws IOException{
+        Main m = new Main();
+        Pages menuStaff = new MenuStaff();
+        m.changeScenePassValue("MenuStaff.fxml",menuStaff,getUserLoggedIn());
+        System.out.println("go to timeline list");
+    }
+
+    //Logout
 
     public void userLogoutMenu(ActionEvent event) throws IOException {
         Main m = new Main();

@@ -34,7 +34,6 @@ import java.util.*;
 public class CheckPoint extends Pages implements Initializable, AutoInitialize {
     @FXML private TextField find_location;
     @FXML private Button find_btn;
-    @FXML private Button back_to_menu_btn;
     @FXML private TableView<CheckPointTable> timeline_tb;
     @FXML private TableColumn<CheckPointTable, String> col_date;
     @FXML private TableColumn<CheckPointTable, String> col_timestart;
@@ -98,11 +97,6 @@ public class CheckPoint extends Pages implements Initializable, AutoInitialize {
         };
     }
 
-    public void goBackToMenu(ActionEvent event) throws IOException{
-        Main m = new Main();
-        Menu menu = new Menu();
-        m.changeScenePassValue("Menu.fxml",menu,getUserLoggedIn());
-    }
 
     @Override
     public void autoInitialize() {

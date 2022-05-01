@@ -1,5 +1,6 @@
 package com.example.javafx_covid19_project.staff;
 
+import com.example.javafx_covid19_project.AutoInitialize;
 import com.example.javafx_covid19_project.DatabaseConnection;
 import com.example.javafx_covid19_project.Main;
 import com.example.javafx_covid19_project.Pages;
@@ -18,6 +19,8 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,10 +32,12 @@ import java.sql.Statement;
 import java.util.*;
 
 
-public class CheckPointStaff extends Pages implements Initializable {
+public class CheckPointStaff extends Pages implements Initializable, AutoInitialize {
     @FXML private TextField find_location;
     @FXML private Button find_btn;
     @FXML private Button back_to_menu_btn;
+    @FXML private Button timeline_list_btn;
+    @FXML private Line search_line;
     @FXML private TableView<CheckPointStaffTable> timeline_tb;
     @FXML private TableColumn<CheckPointStaffTable, String> col_date;
     @FXML private TableColumn<CheckPointStaffTable, String> col_timestart;
@@ -43,6 +48,10 @@ public class CheckPointStaff extends Pages implements Initializable {
     @FXML private TableColumn<CheckPointStaffTable, String> col_sickness;
 
 
+    @Override
+    public void autoInitialize() {
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -129,8 +138,7 @@ public class CheckPointStaff extends Pages implements Initializable {
         };
     }
 
-    public void goBackToMenu(ActionEvent event) throws IOException{
-        Main m = new Main();
-        m.changeScene("MenuStaff.fxml");
+    public void changeLocationColorStaff(){
+        search_line.setStroke(Color.rgb(0,137,150));
     }
 }

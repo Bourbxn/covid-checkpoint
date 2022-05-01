@@ -1,7 +1,5 @@
 package com.example.javafx_covid19_project.staff;
 
-import com.example.javafx_covid19_project.staff.TimelineList;
-
 public class TimelineListTable {
     private String date;
     private String timeStart;
