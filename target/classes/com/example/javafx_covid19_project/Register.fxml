@@ -22,7 +22,7 @@
                <Image url="@../../../images/LoginButton.png" />
             </image>
          </ImageView>
-         <TextField fx:id="username_register" focusTraversable="false" layoutX="18.0" layoutY="281.0" onMouseClicked="#usernameRegFocus" prefHeight="35.0" prefWidth="253.0" style="-fx-background-color: #ffffff;" />
+         <TextField fx:id="username_register" focusTraversable="false" layoutX="18.0" layoutY="279.0" onMouseClicked="#usernameRegFocus" prefHeight="35.0" prefWidth="253.0" style="-fx-background-color: #ffffff;" />
          <PasswordField fx:id="password_register" focusTraversable="false" layoutX="18.0" layoutY="353.0" onInputMethodTextChanged="#checkStrenghtPassword" onKeyPressed="#checkStrenghtPassword" onKeyReleased="#checkStrenghtPassword" onKeyTyped="#checkStrenghtPassword" onMouseClicked="#passwordRegFocus" prefHeight="35.0" prefWidth="254.0" style="-fx-background-color: #ffffff;" />
          <Label layoutX="80.0" layoutY="551.0" text="Have an account." textFill="#4d4d4d">
             <font>
@@ -34,7 +34,7 @@
                <Font name="Mukta Malar SemiBold" size="13.0" />
             </font>
          </Hyperlink>
-         <Text fx:id="username_txt" fill="#4d4d4d" layoutX="26.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <Text fx:id="username_txt" fill="#4d4d4d" layoutX="26.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
             <font>
                <Font name="Mukta Malar Bold" size="14.0" />
             </font>
@@ -98,7 +98,7 @@
          <TextField fx:id="last_name_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="138.0" onInputMethodTextChanged="#lastNameRegFocus" onMouseClicked="#lastNameRegFocus" prefHeight="35.0" prefWidth="253.0" style="-fx-background-color: transparent;" />
          <TextField fx:id="age_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="209.0" onInputMethodTextChanged="#ageRegFocus" onMouseClicked="#ageRegFocus" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: transparent;" />
          <TextField fx:id="gender_border_tf" disable="true" focusTraversable="false" layoutX="157.0" layoutY="209.0" onInputMethodTextChanged="#genderRegFocus" onMouseClicked="#genderRegFocus" prefHeight="36.0" prefWidth="115.0" style="-fx-background-color: transparent;" />
-         <TextField fx:id="username_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="281.0" onInputMethodTextChanged="#usernameRegFocus" onMouseClicked="#usernameRegFocus" prefHeight="35.0" prefWidth="253.0" style="-fx-background-color: transparent;" />
+         <TextField fx:id="username_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="279.0" onInputMethodTextChanged="#usernameRegFocus" onMouseClicked="#usernameRegFocus" prefHeight="35.0" prefWidth="253.0" style="-fx-background-color: transparent;" />
          <TextField fx:id="password_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="353.0" onInputMethodTextChanged="#onPasswordTyped" onMouseClicked="#passwordRegFocus" prefHeight="35.0" prefWidth="254.0" style="-fx-background-color: transparent;" />
          <TextField fx:id="confirm_password_border_tf" disable="true" focusTraversable="false" layoutX="17.0" layoutY="450.0" onInputMethodTextChanged="#confirmPasswordRegFocus" onMouseClicked="#confirmPasswordRegFocus" prefHeight="35.0" prefWidth="255.0" style="-fx-background-color: transparent;" />
          <Rectangle fx:id="password_check_1" arcHeight="5.0" arcWidth="5.0" fill="#e4e4e4" height="5.0" layoutX="18.0" layoutY="392.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="82.0" />
@@ -122,6 +122,11 @@
          <Text fx:id="password_match_txt" fill="#616161" fontSmoothingType="LCD" layoutX="121.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No">
             <font>
                <Font name="Mukta Malar Bold" size="12.0" />
+            </font>
+         </Text>
+         <Text fx:id="already_taken_txt" fill="INDIANRED" layoutX="120.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This username is already taken.">
+            <font>
+               <Font name="Mukta Malar Bold" size="11.0" />
             </font>
          </Text>
       </AnchorPane>

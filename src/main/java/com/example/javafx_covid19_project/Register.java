@@ -64,12 +64,15 @@ public class Register extends Pages implements Initializable , AutoInitialize{
     @FXML private BorderPane border_pane;
     @FXML private Text password_check_txt;
     @FXML private Text password_match_txt;
+    @FXML private Text already_taken_txt;
+    private boolean alreadyUsernameUsed;
     private int passwordStrenghtLv;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gender_register.setItems(FXCollections.observableArrayList("Male","Female","Other"));
         button_hover_img.setVisible(false);
+        already_taken_txt.setVisible(false);
     }
 
     @Override
@@ -78,12 +81,12 @@ public class Register extends Pages implements Initializable , AutoInitialize{
     }
 
     public void userCreateAccount(ActionEvent event) throws IOException {
-        checkInvalidTextfield();
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        checkInvalidTextfield(connectDB);
         bg_app.requestFocus();
         System.out.println("confirm " + getConfirmRegister());
         if(getConfirmRegister()){
-            DatabaseConnection connectNow = new DatabaseConnection();
-            Connection connectDB = connectNow.getConnection();
             addToUser(connectDB);
             createMember(connectDB);
         }
@@ -102,8 +105,6 @@ public class Register extends Pages implements Initializable , AutoInitialize{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private void createMember(Connection connectDB) throws IOException {
@@ -127,7 +128,25 @@ public class Register extends Pages implements Initializable , AutoInitialize{
         }
     }
 
-    private void checkInvalidTextfield(){
+    private void getUsernameUsed(Connection connectDB){
+        String connectQuery = String.format("SELECT * FROM user WHERE username = '%s'",username_register.getText());
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet resultSet = statement.executeQuery(connectQuery);
+            if (resultSet.next()) {
+                alreadyUsernameUsed = true;
+            }
+            else {
+                alreadyUsernameUsed = false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void checkInvalidTextfield(Connection connectDB){
+        getUsernameUsed(connectDB);
         //first name
         if(checkInvalidInputTF(first_name_register)){
             setInvalidFocus(first_name_border_tf,first_name_txt);
@@ -148,6 +167,9 @@ public class Register extends Pages implements Initializable , AutoInitialize{
         if(checkInvalidInputTF(username_register) || checkUsernameContains(username_register.getText())){
             setInvalidFocus(username_border_tf,username_txt);
         }
+        if(alreadyUsernameUsed){
+            already_taken_txt.setVisible(true);
+        }
         //password
         if(checkInvalidInputTF(password_register) || passwordStrenghtLv < 2){
             setInvalidFocus(password_border_tf,password_txt);
@@ -162,7 +184,7 @@ public class Register extends Pages implements Initializable , AutoInitialize{
         return !(checkInvalidInputTF(first_name_register) || checkInvalidInputTF(first_name_register)
                 || checkInvalidInputTF(age_register) || !checkAgeContains(age_register.getText())
                 || checkInvalidInputCBB(gender_register)
-                || checkInvalidInputTF(username_register) || checkUsernameContains(username_register.getText())
+                || checkInvalidInputTF(username_register) || checkUsernameContains(username_register.getText()) || alreadyUsernameUsed
                 || checkInvalidInputTF(password_register) || passwordStrenghtLv < 2
                 || !confirm_password_register.getText().equals(password_register.getText()));
     }

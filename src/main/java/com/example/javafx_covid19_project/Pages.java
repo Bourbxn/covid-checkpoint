@@ -1,5 +1,8 @@
 package com.example.javafx_covid19_project;
 
+import com.example.javafx_covid19_project.admin.AddStaff;
+import com.example.javafx_covid19_project.admin.MenuAdmin;
+import com.example.javafx_covid19_project.admin.StaffManagement;
 import com.example.javafx_covid19_project.member.*;
 import com.example.javafx_covid19_project.staff.CheckPointStaff;
 import com.example.javafx_covid19_project.staff.MenuStaff;
@@ -74,6 +77,26 @@ public class Pages {
         Pages menuStaff = new MenuStaff();
         m.changeScenePassValue("MenuStaff.fxml",menuStaff,getUserLoggedIn());
         System.out.println("go to timeline list");
+    }
+
+    //Admin
+    public void goToAddStaff(ActionEvent event) throws IOException{
+        Main m = new Main();
+        Pages addStaff = new AddStaff();
+        m.changeScenePassValue("AddStaff.fxml",addStaff,getUserLoggedIn());
+        System.out.println("go to add staff");
+    }
+
+    public void goStaffManage(ActionEvent event) throws IOException{
+        Main m = new Main();
+        Pages goStaffManage = new StaffManagement();
+        m.changeScenePassValue("StaffManagement.fxml",goStaffManage,getUserLoggedIn());
+    }
+
+    public void goMemberManage(ActionEvent event) throws IOException{
+        Main m = new Main();
+        Pages menuAdmin = new MenuAdmin();
+        m.changeScenePassValue("MenuAdmin.fxml",menuAdmin,getUserLoggedIn());
     }
 
     //Logout

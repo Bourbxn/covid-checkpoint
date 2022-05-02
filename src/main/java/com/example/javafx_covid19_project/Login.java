@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,19 +31,29 @@ public class Login implements Initializable{
     @FXML private Line username_line;
     @FXML private Line password_line;
     @FXML private ImageView login_hover_btn;
+    @FXML private BorderPane bg_app;
+    @FXML private Text error_login_txt;
 
     private String role;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         login_hover_btn.setVisible(false);
+        error_login_txt.setVisible(false);
     }
 
     public void userLoginMain() throws IOException {
+        clearEffect();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         setRoleDB(connectDB);
         checkLogin(connectDB);
+    }
+
+    private void clearEffect(){
+        bg_app.requestFocus();
+        username_line.setStroke(Color.BLACK);
+        password_line.setStroke(Color.BLACK);
     }
 
     private void checkLogin(Connection connectDB) throws IOException {
@@ -56,6 +67,7 @@ public class Login implements Initializable{
             ResultSet queryOutput = statement.executeQuery(connectQuery);
 
             if(!queryOutput.isBeforeFirst()){
+                error_login_txt.setVisible(true);
                 System.out.println("Failed to login!");
             }
             else{

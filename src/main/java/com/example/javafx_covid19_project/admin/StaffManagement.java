@@ -1,5 +1,6 @@
 package com.example.javafx_covid19_project.admin;
 
+import com.example.javafx_covid19_project.AutoInitialize;
 import com.example.javafx_covid19_project.DatabaseConnection;
 import com.example.javafx_covid19_project.Main;
 import com.example.javafx_covid19_project.Pages;
@@ -15,14 +16,22 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class StaffManagement extends Pages implements Initializable {
+public class StaffManagement extends Pages implements Initializable, AutoInitialize {
     @FXML ListView<String> staff_lv;
     @FXML Button back_to_menu_btn;
     @FXML Button remove_staff_btn;
+    @FXML Button logout_btn;
+    @FXML Button staff_manage_btn;
+    @FXML Button member_manage_btn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         addStaffList();
+    }
+
+    @Override
+    public void autoInitialize() {
+
     }
 
     public void addStaffList() {
