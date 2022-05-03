@@ -108,7 +108,7 @@
                   <Font name="Mukta Malar Bold" size="18.0" />
                </font>
             </Text>
-            <TableView fx:id="add_timeline_tb" layoutX="250.0" layoutY="45.0" prefHeight="426.0" prefWidth="514.0">
+            <TableView fx:id="add_timeline_tb" layoutX="250.0" layoutY="45.0" prefHeight="401.0" prefWidth="514.0">
               <columns>
                 <TableColumn fx:id="date_col" prefWidth="90.0" text="Date" />
                 <TableColumn fx:id="time_start_col" text="Time start" />
@@ -117,127 +117,133 @@
                   <TableColumn fx:id="sickness_col" prefWidth="93.0" text="Sickness" />
               </columns>
             </TableView>
-            <DatePicker focusTraversable="false" layoutX="250.0" layoutY="500.0" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #f0f0f0;">
+            <DatePicker fx:id="date_dpk" focusTraversable="false" layoutX="250.0" layoutY="474.0" onMouseClicked="#clearErrorDate" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #f0f0f0;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></DatePicker>
-            <TextField layoutX="372.0" layoutY="500.0" prefHeight="27.0" prefWidth="36.0" style="-fx-background-color: #f0f0f0;" />
-            <Text fx:id="hour_start_txt" fontSmoothingType="LCD" layoutX="381.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+            <TextField fx:id="hour_start_tf" disable="true" layoutX="372.0" layoutY="474.0" prefHeight="27.0" prefWidth="36.0" style="-fx-background-color: #f0f0f0;" />
+            <Text fx:id="hour_start_txt" fontSmoothingType="LCD" layoutX="381.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
                <font>
                   <Font name="Mukta Malar Regular" size="19.0" />
                </font>
             </Text>
-            <Text layoutX="411.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+            <Text layoutX="411.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
                <font>
                   <Font name="Mukta Malar SemiBold" size="21.0" />
                </font>
             </Text>
-            <TextField layoutX="418.0" layoutY="500.0" prefHeight="27.0" prefWidth="36.0" style="-fx-background-color: #f0f0f0;" />
-            <Text fx:id="min_start_txt" fontSmoothingType="LCD" layoutX="427.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+            <TextField fx:id="min_start_tf" disable="true" layoutX="418.0" layoutY="474.0" prefHeight="27.0" prefWidth="36.0" style="-fx-background-color: #f0f0f0;" />
+            <Text fx:id="min_start_txt" fontSmoothingType="LCD" layoutX="427.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
                <font>
                   <Font name="Mukta Malar Regular" size="19.0" />
                </font>
             </Text>
-            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="381.0" layoutY="527.0">
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="381.0" layoutY="501.0">
                <image>
                   <Image url="@../../../images/downTime.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="381.0" layoutY="483.0" rotate="180.0">
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="381.0" layoutY="457.0" rotate="180.0">
                <image>
                   <Image url="@../../../images/downTime.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="428.0" layoutY="527.0">
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="428.0" layoutY="501.0">
                <image>
                   <Image url="@../../../images/downTime.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="427.0" layoutY="483.0" rotate="180.0">
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="427.0" layoutY="457.0" rotate="180.0">
                <image>
                   <Image url="@../../../images/downTime.png" />
                </image>
             </ImageView>
-            <Button fx:id="hour_start_up_btn" layoutX="381.0" layoutY="478.0" mnemonicParsing="false" onAction="#hourStartUp" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
+            <Button fx:id="hour_start_up_btn" layoutX="381.0" layoutY="452.0" mnemonicParsing="false" onAction="#hourStartUp" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="hour_start_down_btn" layoutX="381.0" layoutY="522.0" mnemonicParsing="false" onAction="#hourStartDown" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
+            <Button fx:id="hour_start_down_btn" layoutX="381.0" layoutY="496.0" mnemonicParsing="false" onAction="#hourStartDown" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="min_start_down_btn" layoutX="428.0" layoutY="522.0" mnemonicParsing="false" onAction="#minStartDown" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
+            <Button fx:id="min_start_down_btn" layoutX="428.0" layoutY="496.0" mnemonicParsing="false" onAction="#minStartDown" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="min_start_up_btn" layoutX="427.0" layoutY="478.0" mnemonicParsing="false" onAction="#minStartUp" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
+            <Button fx:id="min_start_up_btn" layoutX="427.0" layoutY="452.0" mnemonicParsing="false" onAction="#minStartUp" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="get_time_btn" layoutX="629.0" layoutY="552.0" mnemonicParsing="false" onAction="#getTime" text="Button" />
-            <TextField layoutX="470.0" layoutY="500.0" prefHeight="27.0" prefWidth="36.0" style="-fx-background-color: #f0f0f0;" />
-            <Text fx:id="hour_end_txt" fontSmoothingType="LCD" layoutX="479.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+            <Button fx:id="add_btn" layoutX="250.0" layoutY="534.0" mnemonicParsing="false" onAction="#addTimeline" prefHeight="32.0" prefWidth="68.0" style="-fx-background-color: #27AE60;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Mukta Malar SemiBold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <TextField fx:id="hour_end_tf" disable="true" layoutX="470.0" layoutY="474.0" prefHeight="27.0" prefWidth="36.0" style="-fx-background-color: #f0f0f0;" />
+            <Text fx:id="hour_end_txt" fontSmoothingType="LCD" layoutX="479.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
                <font>
                   <Font name="Mukta Malar Regular" size="19.0" />
                </font>
             </Text>
-            <Text layoutX="509.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+            <Text layoutX="509.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
                <font>
                   <Font name="Mukta Malar SemiBold" size="21.0" />
                </font>
             </Text>
-            <TextField layoutX="516.0" layoutY="500.0" prefHeight="27.0" prefWidth="36.0" style="-fx-background-color: #f0f0f0;" />
-            <Text fx:id="min_end_txt" fontSmoothingType="LCD" layoutX="525.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+            <TextField fx:id="min_end_tf" disable="true" layoutX="516.0" layoutY="474.0" prefHeight="27.0" prefWidth="36.0" style="-fx-background-color: #f0f0f0;" />
+            <Text fx:id="min_end_txt" fontSmoothingType="LCD" layoutX="525.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
                <font>
                   <Font name="Mukta Malar Regular" size="19.0" />
                </font>
             </Text>
-            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="479.0" layoutY="527.0">
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="479.0" layoutY="501.0">
                <image>
                   <Image url="@../../../images/downTime.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="479.0" layoutY="483.0" rotate="180.0">
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="479.0" layoutY="457.0" rotate="180.0">
                <image>
                   <Image url="@../../../images/downTime.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="526.0" layoutY="527.0">
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="526.0" layoutY="501.0">
                <image>
                   <Image url="@../../../images/downTime.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="525.0" layoutY="483.0" rotate="180.0">
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="525.0" layoutY="457.0" rotate="180.0">
                <image>
                   <Image url="@../../../images/downTime.png" />
                </image>
             </ImageView>
-            <Button fx:id="hour_end_up_btn" layoutX="479.0" layoutY="478.0" mnemonicParsing="false" onAction="#hourEndUp" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
+            <Button fx:id="hour_end_up_btn" layoutX="479.0" layoutY="452.0" mnemonicParsing="false" onAction="#hourEndUp" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="hour_end_down_btn" layoutX="479.0" layoutY="522.0" mnemonicParsing="false" onAction="#hourEndDown" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
+            <Button fx:id="hour_end_down_btn" layoutX="479.0" layoutY="496.0" mnemonicParsing="false" onAction="#hourEndDown" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="min_end_down_btn" layoutX="526.0" layoutY="522.0" mnemonicParsing="false" onAction="#minEndDown" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
+            <Button fx:id="min_end_down_btn" layoutX="526.0" layoutY="496.0" mnemonicParsing="false" onAction="#minEndDown" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="min_end_up_btn" layoutX="525.0" layoutY="478.0" mnemonicParsing="false" onAction="#minEndUp" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
+            <Button fx:id="min_end_up_btn" layoutX="525.0" layoutY="452.0" mnemonicParsing="false" onAction="#minEndUp" prefHeight="17.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text layoutX="460.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+            <Text layoutX="460.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                <font>
                   <Font name="Mukta Malar SemiBold" size="21.0" />
                </font>
             </Text>
-            <TextField fx:id="location_tf" layoutX="566.0" layoutY="498.0" prefHeight="27.0" prefWidth="115.0" promptText="location" style="-fx-background-color: #f0f0f0;">
+            <TextField fx:id="location_tf" layoutX="566.0" layoutY="472.0" onMouseClicked="#clearErrorLocation" prefHeight="27.0" prefWidth="115.0" promptText="location" style="-fx-background-color: #f0f0f0;">
                <font>
                   <Font name="Mukta Malar Medium" size="13.0" />
                </font>
@@ -245,7 +251,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <CheckBox fx:id="sickness_cb" focusTraversable="false" layoutX="694.0" layoutY="502.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="88.0" text="Sickness" wrapText="true">
+            <CheckBox fx:id="sickness_cb" focusTraversable="false" layoutX="694.0" layoutY="476.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="88.0" text="Sickness" wrapText="true">
                <font>
                   <Font name="Mukta Malar Regular" size="13.0" />
                </font>
@@ -253,6 +259,22 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </CheckBox>
+            <Button fx:id="remove_btn" layoutX="327.0" layoutY="534.0" mnemonicParsing="false" onAction="#removeTimeline" prefHeight="32.0" prefWidth="68.0" style="-fx-background-color: indianred;" text="Remove" textFill="WHITE">
+               <font>
+                  <Font name="Mukta Malar SemiBold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="save_btn" layoutX="704.0" layoutY="534.0" mnemonicParsing="false" onAction="#saveTimeline" prefHeight="32.0" prefWidth="68.0" style="-fx-background-color: #2E86C1;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="Mukta Malar SemiBold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
    </bottom>
