@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
@@ -93,11 +94,17 @@
             <font>
                <Font name="Mukta Malar Bold" size="16.0" />
             </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
          </Button>
          <TextField fx:id="first_name_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="64.0" onInputMethodTextChanged="#firstNameRegFocus" onMouseClicked="#firstNameRegFocus" prefHeight="35.0" prefWidth="253.0" style="-fx-background-color: transparent;" />
          <TextField fx:id="last_name_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="138.0" onInputMethodTextChanged="#lastNameRegFocus" onMouseClicked="#lastNameRegFocus" prefHeight="35.0" prefWidth="253.0" style="-fx-background-color: transparent;" />
          <TextField fx:id="age_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="209.0" onInputMethodTextChanged="#ageRegFocus" onMouseClicked="#ageRegFocus" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: transparent;" />
-         <TextField fx:id="gender_border_tf" disable="true" focusTraversable="false" layoutX="157.0" layoutY="209.0" onInputMethodTextChanged="#genderRegFocus" onMouseClicked="#genderRegFocus" prefHeight="36.0" prefWidth="115.0" style="-fx-background-color: transparent;" />
+         <TextField fx:id="gender_border_tf" disable="true" focusTraversable="false" layoutX="157.0" layoutY="209.0" onInputMethodTextChanged="#genderRegFocus" onMouseClicked="#genderRegFocus" prefHeight="36.0" prefWidth="115.0" style="-fx-background-color: transparent;">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></TextField>
          <TextField fx:id="username_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="279.0" onInputMethodTextChanged="#usernameRegFocus" onMouseClicked="#usernameRegFocus" prefHeight="35.0" prefWidth="253.0" style="-fx-background-color: transparent;" />
          <TextField fx:id="password_border_tf" disable="true" focusTraversable="false" layoutX="18.0" layoutY="353.0" onInputMethodTextChanged="#onPasswordTyped" onMouseClicked="#passwordRegFocus" prefHeight="35.0" prefWidth="254.0" style="-fx-background-color: transparent;" />
          <TextField fx:id="confirm_password_border_tf" disable="true" focusTraversable="false" layoutX="17.0" layoutY="450.0" onInputMethodTextChanged="#confirmPasswordRegFocus" onMouseClicked="#confirmPasswordRegFocus" prefHeight="35.0" prefWidth="255.0" style="-fx-background-color: transparent;" />

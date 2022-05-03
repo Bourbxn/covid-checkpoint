@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
@@ -53,7 +54,10 @@
                         <Font name="Mukta Malar Bold" size="15.0" />
                     </font>
                 </Text>
-                <Button fx:id="logout_btn" focusTraversable="false" layoutX="27.0" layoutY="545.0" mnemonicParsing="false" onAction="#userLogoutMenu" opacity="0.0" prefHeight="40.0" prefWidth="115.0" text="Logout" />
+                <Button fx:id="logout_btn" focusTraversable="false" layoutX="27.0" layoutY="545.0" mnemonicParsing="false" onAction="#userLogoutMenu" opacity="0.0" prefHeight="40.0" prefWidth="115.0" text="Logout">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
                 <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="29.0" layoutY="34.0">
                     <image>
                         <Image url="@../../../images/CheckpointLogo2.png" />
@@ -64,8 +68,14 @@
                         <Font name="Mukta Malar Bold" size="18.0" />
                     </font>
                 </Text>
-                <Button fx:id="add_staff_btn" layoutX="22.0" layoutY="274.0" mnemonicParsing="false" onAction="#goToAddStaff" opacity="0.0" prefHeight="40.0" prefWidth="169.0" text="Add staff" />
-                <Button fx:id="member_manage_btn" layoutX="22.0" layoutY="125.0" mnemonicParsing="false" onAction="#goMemberManage" opacity="0.0" prefHeight="40.0" prefWidth="170.0" text="Member management" />
+                <Button fx:id="add_staff_btn" layoutX="22.0" layoutY="274.0" mnemonicParsing="false" onAction="#goToAddStaff" opacity="0.0" prefHeight="40.0" prefWidth="169.0" text="Add staff">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="member_manage_btn" layoutX="22.0" layoutY="125.0" mnemonicParsing="false" onAction="#goMemberManage" opacity="0.0" prefHeight="40.0" prefWidth="170.0" text="Member management">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="35.0" layoutY="205.0">
                <image>
                   <Image url="@../../../images/StaffManageMenuAdmin2.png" />
@@ -81,6 +91,9 @@
                <font>
                   <Font name="Mukta Malar SemiBold" size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             </children>
         </AnchorPane>

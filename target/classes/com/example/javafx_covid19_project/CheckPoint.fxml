@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -56,8 +57,14 @@
                         <Image url="@../../../images/MyTimelineMenuLogo.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="my_covid_timeline_btn" layoutX="21.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToMyCovidTimeline" opacity="0.0" prefHeight="40.0" prefWidth="170.0" text="My covid timeline" />
-                <Button fx:id="add_timeline_btn" layoutX="22.0" layoutY="346.0" mnemonicParsing="false" onAction="#goToAddTimeline" opacity="0.0" prefHeight="40.0" prefWidth="168.0" text="Add timeline" />
+                <Button fx:id="my_covid_timeline_btn" layoutX="21.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToMyCovidTimeline" opacity="0.0" prefHeight="40.0" prefWidth="170.0" text="My covid timeline">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="add_timeline_btn" layoutX="22.0" layoutY="346.0" mnemonicParsing="false" onAction="#goToAddTimeline" opacity="0.0" prefHeight="40.0" prefWidth="168.0" text="Add timeline">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
                 <Button fx:id="check_point_btn" layoutX="22.0" layoutY="274.0" mnemonicParsing="false" onAction="#goToCheckPoint" opacity="0.0" prefHeight="40.0" prefWidth="169.0" text="Checkpoint" />
                 <ImageView fitHeight="36.0" fitWidth="40.0" layoutX="31.0" layoutY="547.0">
                     <image>
@@ -69,7 +76,10 @@
                         <Font name="Mukta Malar Bold" size="15.0" />
                     </font>
                 </Text>
-                <Button fx:id="logout_btn" focusTraversable="false" layoutX="27.0" layoutY="545.0" mnemonicParsing="false" onAction="#userLogoutMenu" opacity="0.0" prefHeight="40.0" prefWidth="115.0" text="Logout" />
+                <Button fx:id="logout_btn" focusTraversable="false" layoutX="27.0" layoutY="545.0" mnemonicParsing="false" onAction="#userLogoutMenu" opacity="0.0" prefHeight="40.0" prefWidth="115.0" text="Logout">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <TextField fx:id="find_location" layoutX="416.0" layoutY="63.0" onAction="#findLocation" onMouseClicked="#changeLocationColor" prefHeight="32.0" prefWidth="166.0" style="-fx-background-color: #ffffff;">
                <font>
                   <Font name="Mukta Malar Medium" size="13.0" />
@@ -103,8 +113,14 @@
                   <Image url="@../../../images/CheckPointSearch.png" />
                </image>
             </ImageView>
-            <Button fx:id="find_btn" layoutX="601.0" layoutY="66.0" mnemonicParsing="false" onAction="#findLocation" opacity="0.0" prefHeight="26.0" prefWidth="26.0" text="find" />
-            <Button fx:id="profile_btn" layoutX="21.0" layoutY="125.0" mnemonicParsing="false" onAction="#goToProfile" opacity="0.0" prefHeight="40.0" prefWidth="170.0" text="Profile" />
+            <Button fx:id="find_btn" layoutX="601.0" layoutY="66.0" mnemonicParsing="false" onAction="#findLocation" opacity="0.0" prefHeight="26.0" prefWidth="26.0" text="find">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="profile_btn" layoutX="21.0" layoutY="125.0" mnemonicParsing="false" onAction="#goToProfile" opacity="0.0" prefHeight="40.0" prefWidth="170.0" text="Profile">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="29.0" layoutY="34.0">
                <image>
                   <Image url="@../../../images/CheckpointLogo2.png" />
