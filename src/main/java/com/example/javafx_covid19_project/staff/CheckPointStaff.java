@@ -81,7 +81,7 @@ public class CheckPointStaff extends Pages implements Initializable, AutoInitial
         ObservableList<CheckPointStaffTable> timelineCheckpoint = FXCollections.observableArrayList();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String connectQuery = String.format("SELECT username, datetime_start,datetime_end,location, sickness FROM timeline_covid WHERE location = '%s' ORDER BY datetime_start",find_location.getText());
+        String connectQuery = String.format("SELECT username, datetime_start,datetime_end,location, sickness FROM timeline_covid WHERE location = '%s' ORDER BY datetime_start DESC",find_location.getText());
 
         try{
             Statement statement = connectDB.createStatement();

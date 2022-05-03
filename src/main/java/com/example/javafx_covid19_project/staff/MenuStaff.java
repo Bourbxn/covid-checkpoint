@@ -63,7 +63,7 @@ public class MenuStaff extends Pages implements AutoInitialize, Initializable {
         ObservableList<TimelineListTable> timelineList = FXCollections.observableArrayList();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String connectQuery = "SELECT username, datetime_start,datetime_end,location, sickness FROM timeline_covid ORDER BY datetime_start";
+        String connectQuery = "SELECT username, datetime_start,datetime_end,location, sickness FROM timeline_covid ORDER BY datetime_start DESC";
         try{
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);

@@ -183,8 +183,10 @@ public class AddTimeline extends Pages implements Initializable, AutoInitialize 
     //Remove function
     @FXML
     private void removeTimeline(ActionEvent event){
-        int selectedID = add_timeline_tb.getSelectionModel().getSelectedIndex();
-        add_timeline_tb.getItems().remove(selectedID);
+        if(add_timeline_tb.getSelectionModel().getSelectedItem()!=null){
+            int selectedID = add_timeline_tb.getSelectionModel().getSelectedIndex();
+            add_timeline_tb.getItems().remove(selectedID);
+        }
     }
 
     //Save function
@@ -194,7 +196,6 @@ public class AddTimeline extends Pages implements Initializable, AutoInitialize 
         Connection connectDB = connectNow.getConnection();
         setCovidRound(connectDB);
         addNewCovidRound(connectDB);
-        String username = getUserLoggedIn();
         AddTimelineTable addTimelineTable = new AddTimelineTable();
         List <List<String>> arrData = new ArrayList<>();
         for(int i = 0;i<add_timeline_tb.getItems().size();i++){
