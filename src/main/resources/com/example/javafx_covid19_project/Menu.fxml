@@ -44,21 +44,21 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="first_name_edit_tf" layoutX="373.0" layoutY="70.0" onAction="#hideEditFirstName" promptText="first name" />
+            <TextField fx:id="first_name_edit_tf" layoutX="373.0" layoutY="70.0" onAction="#hideEditFirstName" style="-fx-background-color: #f0f0f0;" />
             <Text layoutX="266.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name :">
                <font>
                   <Font name="Mukta Malar SemiBold" size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="age_edit_tf" layoutX="373.0" layoutY="171.0" onAction="#hideEditAge" promptText="age" />
+            <TextField fx:id="age_edit_tf" layoutX="373.0" layoutY="171.0" onAction="#hideEditAge" style="-fx-background-color: #f0f0f0;" />
             <Text fx:id="last_name_txt" layoutX="374.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lastname">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="last_name_edit_tf" layoutX="373.0" layoutY="119.0" onAction="#hideEditLastName" promptText="last name" />
-            <ComboBox fx:id="gender_edit_cbb" layoutX="371.0" layoutY="227.0" onAction="#hideEditGender" prefHeight="27.0" prefWidth="166.0" />
-            <ComboBox fx:id="vaccine_edit_cbb" layoutX="371.0" layoutY="280.0" onAction="#hideEditVaccine" prefHeight="27.0" prefWidth="166.0" />
+            <TextField fx:id="last_name_edit_tf" layoutX="373.0" layoutY="119.0" onAction="#hideEditLastName" style="-fx-background-color: #f0f0f0;" />
+            <ComboBox fx:id="gender_edit_cbb" layoutX="371.0" layoutY="227.0" onAction="#hideEditGender" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #f0f0f0;" />
+            <ComboBox fx:id="vaccine_edit_cbb" layoutX="371.0" layoutY="280.0" onAction="#hideEditVaccine" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #f0f0f0;" />
             <ImageView fitHeight="600.0" fitWidth="266.0">
                <image>
                   <Image url="@../../../images/MenuBanner.png" />
