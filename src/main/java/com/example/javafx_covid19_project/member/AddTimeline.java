@@ -57,6 +57,11 @@ public class AddTimeline extends Pages implements Initializable, AutoInitialize 
     private String covid_round;
     private Boolean isValidAdd;
 
+    private String firstName;
+    private String lastName;
+    private String gender;
+    private String age;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -192,48 +197,62 @@ public class AddTimeline extends Pages implements Initializable, AutoInitialize 
     //Save function
     @FXML
     private void saveTimeline(ActionEvent event){
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        setCovidRound(connectDB);
-        addNewCovidRound(connectDB);
-        AddTimelineTable addTimelineTable = new AddTimelineTable();
-        List <List<String>> arrData = new ArrayList<>();
-        for(int i = 0;i<add_timeline_tb.getItems().size();i++){
-            addTimelineTable = add_timeline_tb.getItems().get(i);
-            arrData.add(new ArrayList<>());
-            arrData.get(i).add(addTimelineTable.getDate());
-            arrData.get(i).add(""+addTimelineTable.getTimeStart());
-            arrData.get(i).add(""+addTimelineTable.getTimeEnd());
-            arrData.get(i).add(""+addTimelineTable.getLocation());
-            arrData.get(i).add(""+addTimelineTable.getSickness());
-        }
+        if(!invalidSave()){
+            DatabaseConnection connectNow = new DatabaseConnection();
+            Connection connectDB = connectNow.getConnection();
+            setDataDB(connectDB);
+            setCovidRound(connectDB);
+            addNewCovidRound(connectDB);
+            AddTimelineTable addTimelineTable = new AddTimelineTable();
+            List <List<String>> arrData = new ArrayList<>();
+            for(int i = 0;i<add_timeline_tb.getItems().size();i++){
+                addTimelineTable = add_timeline_tb.getItems().get(i);
+                arrData.add(new ArrayList<>());
+                arrData.get(i).add(addTimelineTable.getDate());
+                arrData.get(i).add(""+addTimelineTable.getTimeStart());
+                arrData.get(i).add(""+addTimelineTable.getTimeEnd());
+                arrData.get(i).add(""+addTimelineTable.getLocation());
+                arrData.get(i).add(""+addTimelineTable.getSickness());
+            }
 
-        for (List<String> arrIndex : arrData) {
-            String date = arrIndex.get(0);
-            String timeStart = arrIndex.get(1);
-            String timeEnd = arrIndex.get(2);
-            String location = arrIndex.get(3);
-            String sickness = arrIndex.get(4);
+            for (List<String> arrIndex : arrData) {
+                String date = arrIndex.get(0);
+                String timeStart = arrIndex.get(1);
+                String timeEnd = arrIndex.get(2);
+                String location = arrIndex.get(3);
+                String sickness = arrIndex.get(4);
 
-            String dateTimeStart = datetimeToStr(date, timeStart);
-            String dateTimeEnd = datetimeToStr(date, timeEnd);
-            String sicknessInt = sicknessToInt(sickness);
-            saveTimelineDB(getUserLoggedIn(),dateTimeStart,dateTimeEnd,location,sicknessInt,connectDB);
+                String dateTimeStart = datetimeToStr(date, timeStart);
+                String dateTimeEnd = datetimeToStr(date, timeEnd);
+                String sicknessInt = sicknessToInt(sickness);
+                saveTimelineDB(getUserLoggedIn(),dateTimeStart,dateTimeEnd,location,sicknessInt,connectDB);
+            }
+            clearTable();
+            clearInput();
         }
-        clearTable();
-        clearInput();
+        else {
+            add_timeline_tb.setBorder(Border.stroke(Color.INDIANRED));
+        }
+    }
+
+    private boolean invalidSave(){
+        return add_timeline_tb.getItems().size() < 8;
     }
 
     private void saveTimelineDB(String username, String datetime_start, String datetime_end,String location, String sickness,Connection connectDB){
         try{
-            String connectQuery = "INSERT INTO timeline_covid (username, datetime_start, datetime_end, location, sickness, covid_round) VALUES (?,?,?,?,?,?)";
+            String connectQuery = "INSERT INTO timeline_covid (username, first_name, last_name, datetime_start, datetime_end, location, sickness, covid_round, gender, age) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = connectDB.prepareStatement(connectQuery);
             pst.setString(1, username);
-            pst.setString(2, datetime_start);
-            pst.setString(3, datetime_end);
-            pst.setString(4, location);
-            pst.setString(5, sickness);
-            pst.setString(6, covid_round);
+            pst.setString(2, firstName);
+            pst.setString(3, lastName);
+            pst.setString(4, datetime_start);
+            pst.setString(5, datetime_end);
+            pst.setString(6, location);
+            pst.setString(7, sickness);
+            pst.setString(8, covid_round);
+            pst.setString(9, gender);
+            pst.setString(10, age);
             pst.executeUpdate();
             System.out.println("Add timeline Success!");
         } catch (SQLException e) {
@@ -304,6 +323,10 @@ public class AddTimeline extends Pages implements Initializable, AutoInitialize 
             min_end_tf.setBorder(Border.stroke(Color.INDIANRED));
             isValidAdd = false;
         }
+        if(!ISAG()){
+            location_tf.setBorder(Border.stroke(Color.INDIANRED));
+            isValidAdd = false;
+        }
     }
 
     @FXML
@@ -321,5 +344,30 @@ public class AddTimeline extends Pages implements Initializable, AutoInitialize 
         min_start_tf.setBorder(Border.EMPTY);
         hour_end_tf.setBorder(Border.EMPTY);
         min_end_tf.setBorder(Border.EMPTY);
+    }
+
+    private boolean ISAG(){
+        return !checkSQLInjection(location_tf.getText());
+    }
+
+    private void setDataDB(Connection connectDB){
+        String connectQuery = String.format("SELECT first_name, last_name, age, gender FROM user_member WHERE username = '%s'",getUserLoggedIn());
+        String[] dataDB = new String[4];
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()){
+                String[] columnLabel = {"first_name", "last_name", "age", "gender"};
+                for(int i=0;i<4;i++) dataDB[i] = queryOutput.getString(columnLabel[i]);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        firstName = dataDB[0];
+        lastName = dataDB[1];
+        age = dataDB[2];
+        gender = dataDB[3];
     }
 }

@@ -9,6 +9,9 @@ import com.example.javafx_covid19_project.staff.MenuStaff;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Pages {
     private String username;
@@ -104,5 +107,18 @@ public class Pages {
     public void userLogoutMenu(ActionEvent event) throws IOException {
         Main m = new Main();
         m.changeScene("Login.fxml");
+    }
+
+    //Function
+    public boolean checkSQLInjection(String text){
+        boolean nonISAG = false;
+        Set<Character> set = new HashSet<Character>(Arrays.asList(';', '\'','*','='));
+        for (char i : text.toCharArray())
+        {
+            if (set.contains(i)){
+                nonISAG = true;
+            }
+        }
+        return  nonISAG;
     }
 }

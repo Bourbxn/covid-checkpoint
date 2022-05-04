@@ -63,7 +63,7 @@ public class MenuStaff extends Pages implements AutoInitialize, Initializable {
         ObservableList<TimelineListTable> timelineList = FXCollections.observableArrayList();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String connectQuery = "SELECT username, datetime_start,datetime_end,location, sickness FROM timeline_covid ORDER BY datetime_start DESC";
+        String connectQuery = "SELECT username, first_name, last_name, datetime_start,datetime_end,location, sickness, gender, age FROM timeline_covid ORDER BY datetime_start DESC";
         try{
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);
@@ -78,9 +78,9 @@ public class MenuStaff extends Pages implements AutoInitialize, Initializable {
                         +":"+(dateTimeStart.split(" ")[1]).split(":")[1];
                 String timeEnd = (dateTimeEnd.split(" ")[1]).split(":")[0]
                         +":"+(dateTimeEnd.split(" ")[1]).split(":")[1];
-                String name = getNameDB(queryOutput.getString("username"))[0] + " " + getNameDB(queryOutput.getString("username"))[1];
-                String gender = getNameDB(queryOutput.getString("username"))[3];
-                String age = getNameDB(queryOutput.getString("username"))[2];
+                String name = queryOutput.getString("first_name") + "  " + queryOutput.getString("last_name");
+                String gender = queryOutput.getString("gender");
+                String age = queryOutput.getString("age");
                 String sickness = changeSicknessToStr(queryOutput.getString("sickness"));
                 timelineList.add(new TimelineListTable(location,date,timeStart,timeEnd,name,gender,age,sickness));
             }
@@ -92,25 +92,6 @@ public class MenuStaff extends Pages implements AutoInitialize, Initializable {
         return timelineList;
     }
 
-    private String[] getNameDB(String username){
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        String connectQuery = String.format("SELECT first_name, last_name, age, gender FROM user_member WHERE username = '%s'",username);
-        String[] dataDB = new String[4];
-        try{
-            Statement statement = connectDB.createStatement();
-            ResultSet queryOutput = statement.executeQuery(connectQuery);
-
-            while (queryOutput.next()){
-                String[] columnLabel = {"first_name", "last_name", "age", "gender"};
-                for(int i=0;i<4;i++) dataDB[i] = queryOutput.getString(columnLabel[i]);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return dataDB;
-    }
 
     private String changeSicknessToStr(String sickness){
         return switch (sickness) {
@@ -120,10 +101,5 @@ public class MenuStaff extends Pages implements AutoInitialize, Initializable {
         };
     }
 
-    public void goBackMenuTimelineList(ActionEvent event) throws IOException{
-        System.out.println("go back menu from timeline");
-        Main m = new Main();
-        m.changeScene("MenuStaff.fxml");
-    }
 
 }

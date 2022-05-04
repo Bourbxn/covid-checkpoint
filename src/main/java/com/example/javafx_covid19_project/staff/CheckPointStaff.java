@@ -81,7 +81,7 @@ public class CheckPointStaff extends Pages implements Initializable, AutoInitial
         ObservableList<CheckPointStaffTable> timelineCheckpoint = FXCollections.observableArrayList();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String connectQuery = String.format("SELECT username, datetime_start,datetime_end,location, sickness FROM timeline_covid WHERE location = '%s' ORDER BY datetime_start DESC",find_location.getText());
+        String connectQuery = String.format("SELECT username, first_name, last_name, datetime_start,datetime_end,location, sickness, gender, age FROM timeline_covid WHERE location = '%s' ORDER BY datetime_start DESC",find_location.getText());
 
         try{
             Statement statement = connectDB.createStatement();
@@ -96,9 +96,9 @@ public class CheckPointStaff extends Pages implements Initializable, AutoInitial
                         +":"+(dateTimeStart.split(" ")[1]).split(":")[1];
                 String timeEnd = (dateTimeEnd.split(" ")[1]).split(":")[0]
                         +":"+(dateTimeEnd.split(" ")[1]).split(":")[1];
-                String name = getNameDB(queryOutput.getString("username"))[0] + "  " + getNameDB(queryOutput.getString("username"))[1];
-                String gender = getNameDB(queryOutput.getString("username"))[3];
-                String age = getNameDB(queryOutput.getString("username"))[2];
+                String name = queryOutput.getString("first_name") + "  " + queryOutput.getString("last_name");
+                String gender = queryOutput.getString("gender");
+                String age = queryOutput.getString("age");
                 String sickness = changeSicknessToStr(queryOutput.getString("sickness"));
                 timelineCheckpoint.add(new CheckPointStaffTable(date,timeStart,timeEnd,name,gender,age,sickness));
             }
@@ -108,26 +108,6 @@ public class CheckPointStaff extends Pages implements Initializable, AutoInitial
             e.printStackTrace();
         }
         return timelineCheckpoint;
-    }
-
-    private String[] getNameDB(String username){
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        String connectQuery = String.format("SELECT first_name, last_name, age, gender FROM user_member WHERE username = '%s'",username);
-        String[] dataDB = new String[4];
-        try{
-            Statement statement = connectDB.createStatement();
-            ResultSet queryOutput = statement.executeQuery(connectQuery);
-
-            while (queryOutput.next()){
-                String[] columnLabel = {"first_name", "last_name", "age", "gender"};
-                for(int i=0;i<4;i++) dataDB[i] = queryOutput.getString(columnLabel[i]);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return dataDB;
     }
 
     private String changeSicknessToStr(String sickness){

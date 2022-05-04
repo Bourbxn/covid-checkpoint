@@ -36,6 +36,10 @@ public class Main extends Application {
         stg.getScene().setRoot(root);
     }
 
+    public void goToISAGWeb(){
+        getHostServices().showDocument("https://isag-lab.github.io/web/");
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

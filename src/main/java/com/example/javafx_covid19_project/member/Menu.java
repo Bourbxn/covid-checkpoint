@@ -91,9 +91,11 @@ public class Menu extends Pages implements Initializable, AutoInitialize {
     }
 
     public void hideEditFirstName(ActionEvent event){
-        saveEditToDB("first_name",first_name_edit_tf.getText());
-        first_name_edit_tf.setVisible(false);
-        first_name_txt.setText(first_name_edit_tf.getText());
+        if(!checkSQLInjection(first_name_edit_tf.getText())){
+            saveEditToDB("first_name",first_name_edit_tf.getText());
+            first_name_edit_tf.setVisible(false);
+            first_name_txt.setText(first_name_edit_tf.getText());
+        }
     }
 
     public void showEditLastName(ActionEvent event){
@@ -101,9 +103,11 @@ public class Menu extends Pages implements Initializable, AutoInitialize {
     }
 
     public void hideEditLastName(ActionEvent event){
-        saveEditToDB("last_name",last_name_edit_tf.getText());
-        last_name_edit_tf.setVisible(false);
-        last_name_txt.setText(last_name_edit_tf.getText());
+        if(!checkSQLInjection(last_name_edit_tf.getText())){
+            saveEditToDB("last_name",last_name_edit_tf.getText());
+            last_name_edit_tf.setVisible(false);
+            last_name_txt.setText(last_name_edit_tf.getText());
+        }
     }
 
     public void showEditAge(ActionEvent event){
@@ -111,9 +115,12 @@ public class Menu extends Pages implements Initializable, AutoInitialize {
     }
 
     public void hideEditAge(ActionEvent event){
-        saveEditToDB("age",age_edit_tf.getText());
-        age_edit_tf.setVisible(false);
-        age_txt.setText(age_edit_tf.getText());
+        if(!checkSQLInjection(age_edit_tf.getText()) || !checkAgeContains(age_edit_tf.getText())){
+            saveEditToDB("age",age_edit_tf.getText());
+            age_edit_tf.setVisible(false);
+            age_txt.setText(age_edit_tf.getText());
+        }
+
     }
 
     public void showEditGender(ActionEvent event){
@@ -150,4 +157,7 @@ public class Menu extends Pages implements Initializable, AutoInitialize {
         }
     }
 
+    private boolean checkAgeContains(String age){
+        return age.matches("[0-9]+");
+    }
 }

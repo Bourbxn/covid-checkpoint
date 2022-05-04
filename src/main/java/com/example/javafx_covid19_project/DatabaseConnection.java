@@ -9,10 +9,10 @@ public class DatabaseConnection {
     public Connection databaseLink;
 
     public Connection getConnection(){
-        String databaseName = "covid";
+        String databaseName = "checkpoint";
         String databaseUsername = "root";
-        String databasePassword = "qwertyuiop[]";
-        String url = "jdbc:mysql://localhost/" + databaseName;
+        String databasePassword = "VwmCRG2nuWhGp9aA";
+        String url = "jdbc:mysql://161.246.5.40:3777/" + databaseName;
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");

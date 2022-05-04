@@ -51,12 +51,7 @@
          </Text>
          <Line fx:id="username_line" endX="142.0" layoutX="129.0" layoutY="257.0" startX="-100.0" />
          <Line fx:id="password_line" endX="140.0" layoutX="130.0" layoutY="330.0" startX="-100.0" />
-         <ImageView fitHeight="29.0" fitWidth="67.0" layoutX="246.0" layoutY="553.0">
-            <image>
-               <Image url="@../../../images/ISAG_Logo.png" />
-            </image>
-         </ImageView>
-         <Text fill="#8a8a8a" layoutX="168.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powered by">
+         <Text fill="#8a8a8a" layoutX="197.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powered by">
             <font>
                <Font name="Mukta Malar Bold" size="14.0" />
             </font>
@@ -99,6 +94,16 @@
                <Font name="Mukta Malar Bold" size="14.0" />
             </font>
          </Text>
+         <ImageView fitHeight="62.0" fitWidth="28.0" layoutX="277.0" layoutY="525.0">
+            <image>
+               <Image url="@../../../images/ISAGLogoV2.png" />
+            </image>
+         </ImageView>
+         <Button fx:id="isag_btn" layoutX="276.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToWebISAG" opacity="0.0" prefHeight="62.0" prefWidth="28.0" text="Button">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
         </AnchorPane>
     </right>
    <left>

@@ -40,7 +40,6 @@ public class Register extends Pages implements Initializable , AutoInitialize{
     @FXML private PasswordField password_register;
     @FXML private TextField confirm_password_register;
     @FXML private Hyperlink user_go_back_login;
-    @FXML private Label gender_label;
     @FXML private ImageView button_img;
     @FXML private ImageView button_hover_img;
     @FXML private AnchorPane bg_app;
@@ -86,7 +85,7 @@ public class Register extends Pages implements Initializable , AutoInitialize{
         checkInvalidTextfield(connectDB);
         bg_app.requestFocus();
         System.out.println("confirm " + getConfirmRegister());
-        if(getConfirmRegister()){
+        if(getConfirmRegister() && ISAG()){
             addToUser(connectDB);
             createMember(connectDB);
         }
@@ -148,7 +147,7 @@ public class Register extends Pages implements Initializable , AutoInitialize{
     private void checkInvalidTextfield(Connection connectDB){
         getUsernameUsed(connectDB);
         //first name
-        if(checkInvalidInputTF(first_name_register)){
+        if(checkInvalidInputTF(first_name_register) ){
             setInvalidFocus(first_name_border_tf,first_name_txt);
         }
         //last name
@@ -190,7 +189,7 @@ public class Register extends Pages implements Initializable , AutoInitialize{
     }
 
     private boolean checkInvalidInputTF(TextField input){
-        return input.getText().equals("");
+        return input.getText().equals("") || checkSQLInjection(input.getText());
     }
 
     private boolean checkInvalidInputCBB(ComboBox<String> input){
@@ -367,5 +366,10 @@ public class Register extends Pages implements Initializable , AutoInitialize{
 
     public String getPasswordBeforeCheck(){
         return password_register.getText();
+    }
+
+    private boolean ISAG(){
+        return checkSQLInjection(first_name_register.getText()) || checkSQLInjection(last_name_register.getText()) || checkSQLInjection(age_register.getText())
+                || checkSQLInjection(username_register.getText()) || checkSQLInjection(password_register.getText()) || checkSQLInjection(confirm_password_register.getText());
     }
 }

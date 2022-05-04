@@ -1,12 +1,10 @@
 package com.example.javafx_covid19_project;
 
 import com.example.javafx_covid19_project.member.Menu;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -21,9 +19,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
-public class Login implements Initializable{
+public class Login extends Pages implements Initializable{
     @FXML private TextField username_tf;
     @FXML private PasswordField password_pf;
     @FXML private Button login_btn;
@@ -33,6 +34,7 @@ public class Login implements Initializable{
     @FXML private ImageView login_hover_btn;
     @FXML private BorderPane bg_app;
     @FXML private Text error_login_txt;
+    @FXML private Button isag_btn;
 
     private String role;
 
@@ -43,11 +45,17 @@ public class Login implements Initializable{
     }
 
     public void userLoginMain() throws IOException {
-        clearEffect();
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        setRoleDB(connectDB);
-        checkLogin(connectDB);
+        System.out.println(ISAG());
+        if(ISAG()){
+            clearEffect();
+            DatabaseConnection connectNow = new DatabaseConnection();
+            Connection connectDB = connectNow.getConnection();
+            setRoleDB(connectDB);
+            checkLogin(connectDB);
+        }
+        else {
+            error_login_txt.setVisible(true);
+        }
     }
 
     private void clearEffect(){
@@ -108,10 +116,6 @@ public class Login implements Initializable{
         username_line.setStroke(Color.rgb(0,137,150));
     }
 
-    public void changeBackUsernameLine(){
-        username_line.setStroke(Color.rgb(0,0,0));
-    }
-
     public void changePasswordLine(){
         username_line.setStroke(Color.rgb(0,0,0));
         password_line.setStroke(Color.rgb(0,137,150));
@@ -123,5 +127,16 @@ public class Login implements Initializable{
 
     public void changeBackButtonColor(){
         login_hover_btn.setVisible(false);
+    }
+
+    private boolean ISAG(){
+       return !(checkSQLInjection(username_tf.getText()) || checkSQLInjection(password_pf.getText()));
+    }
+
+    @FXML
+    private void goToWebISAG(ActionEvent event){
+        System.out.println("pressed");
+        Main m = new Main();
+        m.goToISAGWeb();
     }
 }
