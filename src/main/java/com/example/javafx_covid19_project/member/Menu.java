@@ -10,14 +10,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-
-import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
 public class Menu extends Pages implements Initializable, AutoInitialize {
-
     @FXML private Button check_point_btn;
     @FXML private Button add_timeline_btn;
     @FXML private Button logout_btn;
@@ -39,8 +36,6 @@ public class Menu extends Pages implements Initializable, AutoInitialize {
     @FXML private Button gender_edit_btn;
     @FXML private ComboBox<String> vaccine_edit_cbb;
     @FXML private Button vaccine_edit_btn;
-
-
     public String firstNameInfo,lastNameInfo,ageInfo,genderInfo,vaccineInfo,covidRoundInfo;
 
     @Override
@@ -84,7 +79,6 @@ public class Menu extends Pages implements Initializable, AutoInitialize {
             e.printStackTrace();
         }
     }
-
 
     public void showEditFirstName(ActionEvent event){
         first_name_edit_tf.setVisible(true);

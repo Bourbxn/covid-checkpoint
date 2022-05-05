@@ -9,7 +9,6 @@ public class CheckPointStaffTable {
     private String age;
     private String sickness;
 
-
     public CheckPointStaffTable(String date, String timeStart, String timeEnd, String name, String gender, String age, String sickness) {
         this.date = date;
         this.timeStart = timeStart;

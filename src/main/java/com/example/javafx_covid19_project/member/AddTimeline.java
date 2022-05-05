@@ -53,15 +53,12 @@ public class AddTimeline extends Pages implements Initializable, AutoInitialize 
     @FXML private Button add_btn;
     @FXML private Button remove_btn;
     @FXML private Button save_btn;
-
     private String covid_round;
     private Boolean isValidAdd;
-
     private String firstName;
     private String lastName;
     private String gender;
     private String age;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,9 +70,7 @@ public class AddTimeline extends Pages implements Initializable, AutoInitialize 
     }
 
     @Override
-    public void autoInitialize() {
-
-    }
+    public void autoInitialize() {}
 
     // Time start control button
     @FXML

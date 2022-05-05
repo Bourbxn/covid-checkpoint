@@ -2,18 +2,12 @@ package com.example.javafx_covid19_project.member;
 
 import com.example.javafx_covid19_project.AutoInitialize;
 import com.example.javafx_covid19_project.DatabaseConnection;
-import com.example.javafx_covid19_project.Main;
 import com.example.javafx_covid19_project.Pages;
-import com.example.javafx_covid19_project.staff.TimelineListTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.IOException;

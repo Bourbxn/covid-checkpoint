@@ -7,9 +7,7 @@ public class MyCovidTimelineTable {
     private String location;
     private String sickness;
 
-    public MyCovidTimelineTable(){
-
-    }
+    public MyCovidTimelineTable(){}
 
     public MyCovidTimelineTable(String date,String timeStart,String timeEnd,String location,String sickness){
         this.date = date;

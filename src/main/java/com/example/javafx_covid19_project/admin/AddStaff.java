@@ -8,16 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -49,9 +46,7 @@ public class AddStaff extends Pages implements AutoInitialize, Initializable {
     private boolean alreadyUsernameUsed;
 
     @Override
-    public void autoInitialize() {
-
-    }
+    public void autoInitialize() {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -151,7 +146,6 @@ public class AddStaff extends Pages implements AutoInitialize, Initializable {
         textField.setBorder(Border.stroke(Color.rgb(255,0,0)));
         text.setFill(Color.INDIANRED);
     }
-
 
     @FXML
     private void checkStrenghtPasswordAddStaff() {

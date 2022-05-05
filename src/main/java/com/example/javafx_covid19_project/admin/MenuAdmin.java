@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -22,8 +21,6 @@ import java.util.ResourceBundle;
 public class MenuAdmin extends Pages implements AutoInitialize, Initializable {
     @FXML Button logout_btn;
     @FXML Button staff_manage_btn;
-    @FXML Button member_manage_btn;
-    @FXML Button back_to_menu_btn;
     @FXML Button remove_member_btn;
     @FXML private TableView<MemberListTable> member_tb;
     @FXML private TableColumn<MemberListTable, String> col_username;
@@ -32,11 +29,8 @@ public class MenuAdmin extends Pages implements AutoInitialize, Initializable {
     @FXML private TableColumn<MemberListTable, String> col_age;
     @FXML private TableColumn<MemberListTable, String> col_round;
 
-
     @Override
-    public void autoInitialize() {
-
-    }
+    public void autoInitialize() {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -130,10 +124,8 @@ public class MenuAdmin extends Pages implements AutoInitialize, Initializable {
         }
     }
 
-
     public void backMenuMemberManage(ActionEvent event) throws IOException{
         Main m = new Main();
         m.changeScene("MenuAdmin.fxml");
     }
-
 }

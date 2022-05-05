@@ -2,19 +2,15 @@ package com.example.javafx_covid19_project.staff;
 
 import com.example.javafx_covid19_project.AutoInitialize;
 import com.example.javafx_covid19_project.DatabaseConnection;
-import com.example.javafx_covid19_project.Main;
 import com.example.javafx_covid19_project.Pages;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,7 +19,6 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class MenuStaff extends Pages implements AutoInitialize, Initializable {
-    @FXML private Button timeline_list_btn;
     @FXML private Button check_point_btn;
     @FXML private Button logout_btn;
     @FXML private TableView<TimelineListTable> timeline_tb;
@@ -37,9 +32,7 @@ public class MenuStaff extends Pages implements AutoInitialize, Initializable {
     @FXML private TableColumn<TimelineListTable, String> col_sickness;
 
     @Override
-    public void autoInitialize() {
-
-    }
+    public void autoInitialize() {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -92,7 +85,6 @@ public class MenuStaff extends Pages implements AutoInitialize, Initializable {
         return timelineList;
     }
 
-
     private String changeSicknessToStr(String sickness){
         return switch (sickness) {
             case "0" -> "Yes";
@@ -100,6 +92,4 @@ public class MenuStaff extends Pages implements AutoInitialize, Initializable {
             default -> null;
         };
     }
-
-
 }

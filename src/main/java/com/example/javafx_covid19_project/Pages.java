@@ -7,7 +7,6 @@ import com.example.javafx_covid19_project.member.*;
 import com.example.javafx_covid19_project.staff.CheckPointStaff;
 import com.example.javafx_covid19_project.staff.MenuStaff;
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -36,7 +35,6 @@ public class Pages {
     }
 
     //Member
-
     public void goToProfile(ActionEvent event) throws IOException{
         Main m = new Main();
         Menu menu = new Menu();
@@ -58,7 +56,6 @@ public class Pages {
         System.out.println("Go to CheckPoint with " + getUserLoggedIn());
     }
 
-
     public void goToMyCovidTimeline(ActionEvent event) throws IOException{
         Main m = new Main();
         Pages myCovidTimeline = new MyCovidTimeline();
@@ -67,7 +64,6 @@ public class Pages {
     }
 
     //Staff
-
     public void goToCheckPointStaff(ActionEvent event) throws IOException {
         Main m = new Main();
         Pages checkPointStaff = new CheckPointStaff();
@@ -103,7 +99,6 @@ public class Pages {
     }
 
     //Logout
-
     public void userLogoutMenu(ActionEvent event) throws IOException {
         Main m = new Main();
         m.changeScene("Login.fxml");

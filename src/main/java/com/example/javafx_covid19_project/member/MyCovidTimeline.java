@@ -3,14 +3,12 @@ package com.example.javafx_covid19_project.member;
 import com.example.javafx_covid19_project.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -31,7 +29,6 @@ public class MyCovidTimeline extends Pages implements AutoInitialize {
     @FXML private Button profile_btn;
     @FXML private Button remove_timeline_btn;
     private String covid_round;
-
 
     @Override
     public void autoInitialize() {

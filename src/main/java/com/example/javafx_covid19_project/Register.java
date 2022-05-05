@@ -1,32 +1,17 @@
 package com.example.javafx_covid19_project;
 
-
-import com.example.javafx_covid19_project.DatabaseConnection;
-import com.example.javafx_covid19_project.Main;
-import com.example.javafx_covid19_project.Pages;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
-import javafx.css.Size;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.Parent;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-
 import java.net.URL;
 import java.sql.*;
-
 import java.io.IOException;
 import java.util.*;
 

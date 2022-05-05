@@ -3,9 +3,7 @@ package com.example.javafx_covid19_project.member;
 public class AddTimelineTable {
     private String date, timeStart, timeEnd, location, sickness;
 
-    public AddTimelineTable(){
-
-    }
+    public AddTimelineTable(){}
 
     public AddTimelineTable(String date, String timeStart, String timeEnd, String location, String sickness){
         this.date = date;

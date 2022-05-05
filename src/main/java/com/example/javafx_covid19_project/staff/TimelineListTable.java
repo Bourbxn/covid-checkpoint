@@ -10,9 +10,7 @@ public class TimelineListTable {
     private String location;
     private String sickness;
 
-    public TimelineListTable(){
-
-    }
+    public TimelineListTable(){}
 
     public TimelineListTable(String location, String date,String timeStart,String timeEnd,String name,String gender,String age,String sickness){
         this.location = location;

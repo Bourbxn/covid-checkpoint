@@ -18,10 +18,8 @@ import java.util.ResourceBundle;
 
 public class StaffManagement extends Pages implements Initializable, AutoInitialize {
     @FXML ListView<String> staff_lv;
-    @FXML Button back_to_menu_btn;
     @FXML Button remove_staff_btn;
     @FXML Button logout_btn;
-    @FXML Button staff_manage_btn;
     @FXML Button member_manage_btn;
 
     @Override
@@ -30,9 +28,7 @@ public class StaffManagement extends Pages implements Initializable, AutoInitial
     }
 
     @Override
-    public void autoInitialize() {
-
-    }
+    public void autoInitialize() {}
 
     public void addStaffList() {
         DatabaseConnection connectNow = new DatabaseConnection();
