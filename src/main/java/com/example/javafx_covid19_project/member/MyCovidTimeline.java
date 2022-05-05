@@ -12,10 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class MyCovidTimeline extends Pages implements AutoInitialize {
@@ -27,12 +24,13 @@ public class MyCovidTimeline extends Pages implements AutoInitialize {
     @FXML private TableColumn<MyCovidTimelineTable, String> col_time_start;
     @FXML private TableColumn<MyCovidTimelineTable, String> col_time_end;
     @FXML private TableColumn<MyCovidTimelineTable, String> col_sickness;
-    @FXML private Button go_back_menu_btn;
     @FXML private Button check_point_btn;
     @FXML private Button add_timeline_btn;
     @FXML private Button logout_btn;
     @FXML private Button my_covid_timeline_btn;
     @FXML private Button profile_btn;
+    @FXML private Button remove_timeline_btn;
+    private String covid_round;
 
 
     @Override
@@ -110,5 +108,62 @@ public class MyCovidTimeline extends Pages implements AutoInitialize {
             case "1" -> "No";
             default -> null;
         };
+    }
+
+    @FXML
+    private void removeTimeline() throws IOException {
+        DatabaseConnection connection = new DatabaseConnection();
+        Connection connectDB = connection.getConnection();
+        removeTimelineDB(connectDB);
+        resetCovidRoundDB(connectDB);
+        Main m = new Main();
+        Pages myCovidTimeline = new MyCovidTimeline();
+        m.changeScenePassValue("MyCovidTimeline.fxml",myCovidTimeline,getUserLoggedIn());
+        System.out.println("Go to my covid timeline with " + getUserLoggedIn());
+    }
+
+    private void removeTimelineDB(Connection connectDB){
+        String connectQuery = String.format("DELETE FROM timeline_covid WHERE covid_round = '%s'",getUserLoggedIn());
+        try{
+            PreparedStatement pst = connectDB.prepareStatement(connectQuery);
+            pst.executeUpdate();
+            System.out.println("Success!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void resetCovidRoundDB(Connection connectDB){
+        setCovidRound(connectDB);
+        addNewCovidRound(connectDB);
+    }
+
+    private void setCovidRound(Connection connectDB){
+        String connectQuery = String.format("SELECT covid_round FROM user_member WHERE username = '%s'",getUserLoggedIn());
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()){
+                this.covid_round = queryOutput.getString("covid_round");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addNewCovidRound(Connection connectDB){
+        covid_round = String.valueOf(Integer.parseInt(covid_round)-1);
+        try{
+            String connectQuery = String.format("UPDATE user_member SET covid_round = ? WHERE username = '%s'",getUserLoggedIn());
+            PreparedStatement pst = connectDB.prepareStatement(connectQuery);
+            pst.setString(1, covid_round);
+            pst.executeUpdate();
+            System.out.println("Add new covid round success!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
