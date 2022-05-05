@@ -51,6 +51,7 @@ public class CheckPoint extends Pages implements Initializable, AutoInitialize {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         auto_complete_cbb.setItems(FXCollections.observableArrayList("ISAG"));
+        auto_complete_cbb.setDisable(true);
         col_date.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("date"));
         col_timestart.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("timeStart"));
         col_timeend.setCellValueFactory(new PropertyValueFactory<CheckPointTable,String>("timeEnd"));
@@ -129,11 +130,11 @@ public class CheckPoint extends Pages implements Initializable, AutoInitialize {
 
     @FXML
     private void showAutoCompleteText(){
-        find_location.requestFocus();
-        auto_complete_cbb.getItems().clear();
-        ArrayList<String> locationData = getDataAutoCompleteDB();
-        auto_complete_cbb.setItems(FXCollections.observableArrayList(locationData));
-        auto_complete_cbb.show();
+//        find_location.requestFocus();
+//        auto_complete_cbb.getItems().clear();
+//        ArrayList<String> locationData = getDataAutoCompleteDB();
+//        auto_complete_cbb.setItems(FXCollections.observableArrayList(locationData));
+//        auto_complete_cbb.show();
     }
 
     private ArrayList<String> getDataAutoCompleteDB() {
