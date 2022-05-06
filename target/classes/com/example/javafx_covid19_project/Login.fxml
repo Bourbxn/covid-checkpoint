@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="bg_app" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_covid19_project.Login">
+    <right>
+        <AnchorPane prefHeight="600.0" prefWidth="349.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <ImageView fx:id="login_btn_img" fitHeight="32.0" fitWidth="248.0" layoutX="26.0" layoutY="370.0" onMouseEntered="#changeButtonColor">
+            <image>
+               <Image url="@../../../images/LoginButton.png" />
+            </image>
+         </ImageView>
+            <Label layoutX="254.0" layoutY="185.0" prefHeight="31.0" prefWidth="73.0" text="Username" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font name="Mukta Malar Bold" size="16.0" />
+                </font>
+            </Label>
+            <TextField fx:id="username_tf" focusTraversable="false" layoutX="18.0" layoutY="228.0" onMouseClicked="#changeUsernameLine" prefHeight="35.0" prefWidth="253.0" style="-fx-background-color: #ffffff;" />
+            <PasswordField fx:id="password_pf" focusTraversable="false" layoutX="21.0" layoutY="300.0" onMouseClicked="#changePasswordLine" prefHeight="35.0" prefWidth="246.0" style="-fx-background-color: #ffffff;" />
+              <Label layoutX="38.0" layoutY="418.0" text="Don't have an account?" textFill="#8a8a8a">
+            <font>
+               <Font name="Mukta Malar Bold" size="13.0" />
+            </font>
+         </Label>
+              <Hyperlink fx:id="create_account_hp" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="169.0" layoutY="414.0" onAction="#userCreateAccountMain" scaleShape="false" style="-fx-text-fill: #000000;" text="Create Account">
+            <font>
+               <Font name="Mukta Malar SemiBold" size="13.0" />
+            </font>
+         </Hyperlink>
+         <Text fill="#8a8a8a" layoutX="26.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+            <font>
+               <Font name="Mukta Malar Bold" size="14.0" />
+            </font>
+         </Text>
+         <Text fill="#8a8a8a" layoutX="28.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+            <font>
+               <Font name="Mukta Malar Bold" size="14.0" />
+            </font>
+         </Text>
+         <Line fx:id="username_line" endX="142.0" layoutX="129.0" layoutY="257.0" startX="-100.0" />
+         <Line fx:id="password_line" endX="140.0" layoutX="130.0" layoutY="330.0" startX="-100.0" />
+         <Text fill="#8a8a8a" layoutX="197.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powered by">
+            <font>
+               <Font name="Mukta Malar Bold" size="14.0" />
+            </font>
+         </Text>
+         <Text layoutX="60.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME">
+            <font>
+               <Font name="Mukta Malar ExtraBold" size="37.0" />
+            </font>
+         </Text>
+         <ImageView fx:id="login_hover_btn" fitHeight="32.0" fitWidth="247.0" layoutX="27.0" layoutY="370.0">
+            <image>
+               <Image url="@../../../images/LoginButtonHover.png" />
+            </image>
+         </ImageView>
+         <Text disable="true" fill="WHITE" layoutX="135.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
+            <font>
+               <Font name="Mukta Malar Medium" size="17.0" />
+            </font>
+         </Text>
+         <Button fx:id="login_btn" focusTraversable="false" layoutX="27.0" layoutY="366.0" mnemonicParsing="false" onAction="#userLoginMain" onMouseEntered="#changeButtonColor" onMouseExited="#changeBackButtonColor" opacity="0.0" prefHeight="40.0" prefWidth="248.0" style="-fx-background-color: #3ee3b9;" text="Login">
+            <font>
+               <Font name="Mukta Malar Bold" size="16.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+         <Text fill="#363636" layoutX="65.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sign in your account">
+            <font>
+               <Font name="Mukta Malar SemiBold" size="19.0" />
+            </font>
+         </Text>
+         <Text layoutX="230.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="!">
+            <font>
+               <Font name="Mukta Malar ExtraBold" size="47.0" />
+            </font>
+         </Text>
+         <Text fx:id="error_login_txt" fill="INDIANRED" layoutX="30.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect username or password.">
+            <font>
+               <Font name="Mukta Malar Bold" size="14.0" />
+            </font>
+         </Text>
+         <ImageView fitHeight="62.0" fitWidth="28.0" layoutX="277.0" layoutY="525.0">
+            <image>
+               <Image url="@../../../images/ISAGLogoV2.png" />
+            </image>
+         </ImageView>
+         <Button fx:id="isag_btn" layoutX="276.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToWebISAG" opacity="0.0" prefHeight="62.0" prefWidth="28.0" text="Button">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+        </AnchorPane>
+    </right>
+   <left>
+         <ImageView fitHeight="600.0" fitWidth="485.0" pickOnBounds="true" BorderPane.alignment="CENTER">
+             <Image url="@../../../images/CheckpointBanner.png" />
+         </ImageView>
+   </left>
+</BorderPane>

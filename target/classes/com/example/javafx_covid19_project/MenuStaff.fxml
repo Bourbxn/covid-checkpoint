@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #00375b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_covid19_project.staff.MenuStaff">
+   <top>
+      <AnchorPane fx:id="bg_app" onMouseEntered="#autoInitialize" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="266.0">
+               <image>
+                  <Image url="@../../../images/MenuBanner.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="200.0" layoutX="6.0" layoutY="105.0">
+               <image>
+                  <Image url="@../../../images/SelectedTabMenu.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="84.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timeline List">
+               <font>
+                  <Font name="Mukta Malar Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#8a8a8a" layoutX="84.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkpoint">
+               <font>
+                  <Font name="Mukta Malar Bold" size="15.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="33.0" layoutY="203.0">
+               <image>
+                  <Image url="@../../../images/CheckpointLogoMenu.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="40.0" layoutX="31.0" layoutY="547.0">
+               <image>
+                  <Image url="@../../../images/LogoutMenu.png" />
+               </image>
+            </ImageView>
+            <Text fill="#a8a8a8" layoutX="83.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout">
+               <font>
+                  <Font name="Mukta Malar Bold" size="15.0" />
+               </font>
+            </Text>
+            <Button fx:id="logout_btn" focusTraversable="false" layoutX="27.0" layoutY="545.0" mnemonicParsing="false" onAction="#userLogoutMenu" opacity="0.0" prefHeight="40.0" prefWidth="115.0" text="Logout">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="29.0" layoutY="34.0">
+               <image>
+                  <Image url="@../../../images/CheckpointLogo2.png" />
+               </image>
+            </ImageView>
+            <Text fontSmoothingType="LCD" layoutX="75.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkpoint">
+               <font>
+                  <Font name="Mukta Malar Bold" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="35.0" layoutY="129.0">
+               <image>
+                  <Image url="@../../../images/TimelineListMenu.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="check_point_btn" layoutX="21.0" layoutY="201.0" mnemonicParsing="false" onAction="#goToCheckPointStaff" opacity="0.0" prefHeight="40.0" prefWidth="170.0" text="Check Point">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <TableView fx:id="timeline_tb" layoutX="266.0" layoutY="57.0" prefHeight="477.0" prefWidth="478.0">
+               <columns>
+                  <TableColumn fx:id="col_date" prefWidth="99.0" text="Date" />
+                  <TableColumn fx:id="col_timestart" prefWidth="70.0" text="Time start" />
+                  <TableColumn fx:id="col_timeend" prefWidth="81.0" text="Time end" />
+                  <TableColumn fx:id="col_location" prefWidth="161.0" text="Location" />
+                  <TableColumn fx:id="col_sickness" minWidth="0.0" prefWidth="65.0" text="Sickness" />
+                  <TableColumn fx:id="col_name" prefWidth="154.0" text="Name" />
+                  <TableColumn fx:id="col_gender" prefWidth="55.0" text="Gender" />
+                  <TableColumn fx:id="col_age" prefWidth="62.0" text="Age" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>
