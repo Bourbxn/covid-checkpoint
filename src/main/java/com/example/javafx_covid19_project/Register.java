@@ -70,6 +70,7 @@ public class Register extends Pages implements Initializable , AutoInitialize{
         checkInvalidTextfield(connectDB);
         bg_app.requestFocus();
         System.out.println("confirm " + getConfirmRegister());
+        System.out.println(ISAG());
         if(getConfirmRegister() && ISAG()){
             addToUser(connectDB);
             createMember(connectDB);
@@ -354,7 +355,7 @@ public class Register extends Pages implements Initializable , AutoInitialize{
     }
 
     private boolean ISAG(){
-        return checkSQLInjection(first_name_register.getText()) || checkSQLInjection(last_name_register.getText()) || checkSQLInjection(age_register.getText())
-                || checkSQLInjection(username_register.getText()) || checkSQLInjection(password_register.getText()) || checkSQLInjection(confirm_password_register.getText());
+        return !(checkSQLInjection(first_name_register.getText()) && checkSQLInjection(last_name_register.getText()) && checkSQLInjection(age_register.getText())
+                || checkSQLInjection(username_register.getText()) && checkSQLInjection(password_register.getText()) && checkSQLInjection(confirm_password_register.getText()));
     }
 }

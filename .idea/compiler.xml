@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="JavaFX_Covid19_Project" options="--add-exports java.datatransfer/java.awt=com.example.javafx_covid19_project" />
+      <module name="JavaFX_Covid19_Project" options="" />
     </option>
   </component>
 </project>

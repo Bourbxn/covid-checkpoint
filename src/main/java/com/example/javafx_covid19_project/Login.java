@@ -123,7 +123,7 @@ public class Login extends Pages implements Initializable{
     }
 
     private boolean ISAG(){
-       return !(checkSQLInjection(username_tf.getText()) || checkSQLInjection(password_pf.getText()));
+       return !(checkSQLInjection(username_tf.getText()) && checkSQLInjection(password_pf.getText()));
     }
 
     @FXML
