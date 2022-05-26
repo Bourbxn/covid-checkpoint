@@ -120,7 +120,7 @@ public class MyCovidTimeline extends Pages implements AutoInitialize {
     }
 
     private void removeTimelineDB(Connection connectDB){
-        String connectQuery = String.format("DELETE FROM timeline_covid WHERE covid_round = '%s'",getUserLoggedIn());
+        String connectQuery = String.format("DELETE FROM timeline_covid WHERE covid_round = '%s'",round_of_covid_cbb.getValue());
         try{
             PreparedStatement pst = connectDB.prepareStatement(connectQuery);
             pst.executeUpdate();

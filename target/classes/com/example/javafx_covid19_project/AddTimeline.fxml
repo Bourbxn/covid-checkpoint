@@ -108,13 +108,13 @@
                   <Font name="Mukta Malar Bold" size="18.0" />
                </font>
             </Text>
-            <TableView fx:id="add_timeline_tb" layoutX="250.0" layoutY="45.0" prefHeight="401.0" prefWidth="514.0" style="-fx-background-color: #f9f9f9;">
+            <TableView fx:id="add_timeline_tb" layoutX="250.0" layoutY="45.0" prefHeight="401.0" prefWidth="514.0">
               <columns>
-                <TableColumn fx:id="date_col" prefWidth="90.0" style="-fx-background-color: #f0f0f0;" text="Date" />
-                <TableColumn fx:id="time_start_col" style="-fx-background-color: #f0f0f0;" text="Time start" />
-                  <TableColumn fx:id="time_end_col" prefWidth="81.0" style="-fx-background-color: #f0f0f0;" text="Time end" />
-                  <TableColumn fx:id="location_col" prefWidth="169.0" style="-fx-background-color: #f0f0f0;" text="Location" />
-                  <TableColumn fx:id="sickness_col" prefWidth="93.0" style="-fx-background-color: #f0f0f0;" text="Sickness" />
+                <TableColumn fx:id="date_col" prefWidth="90.0" text="Date" />
+                <TableColumn fx:id="time_start_col" text="Time start" />
+                  <TableColumn fx:id="time_end_col" prefWidth="81.0" text="Time end" />
+                  <TableColumn fx:id="location_col" prefWidth="169.0" text="Location" />
+                  <TableColumn fx:id="sickness_col" prefWidth="93.0" text="Sickness" />
               </columns>
             </TableView>
             <DatePicker fx:id="date_dpk" focusTraversable="false" layoutX="250.0" layoutY="474.0" onMouseClicked="#clearErrorDate" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #f0f0f0;">
